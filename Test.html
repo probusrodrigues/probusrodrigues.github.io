@@ -1,0 +1,101 @@
+<html>
+<head>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+
+        var D = formatDate(new Date());
+        //$.ajax({
+        //    url: "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?pincode=401301&date=" + D, success: function (result) {
+        //        console.log(result)
+        //        $("#div1").html(result);
+        //    }
+        //});
+
+
+        //$.ajax({
+        //    url: "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode=401301&date=" + D, success: function (result) {
+        //        console.log(result)
+        //        $("#div1").html(result);
+        //    }
+        //});
+
+        //$.ajax({
+        //    url: "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode=401203&date=" + D, success: function (result) {
+        //        console.log(result)
+        //        $("#div1").html(result);
+        //    }
+        //});
+
+
+
+       
+
+
+        function formatDate(date) {
+            var d = new Date(date),
+                month = '' + (d.getMonth() + 1),
+                day = '' + d.getDate(),
+                year = d.getFullYear();
+
+            if (month.length < 2)
+                month = '0' + month;
+            if (day.length < 2)
+                day = '0' + day;
+
+            return [day, month, year].join('-');
+        }
+
+      
+    </script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <h4> Covid 19 Vaccincation Centers</h4>
+            <hr />
+        </div>
+            <div id="div1" class="row" style="padding:20px; font-size:smaller">
+               
+
+            </div>
+        </div>
+</body>
+<script>
+
+        setInterval(function () {
+            $.ajax({
+                url: "https://cdn-api.co-vin.in/api/v2/appointment/sessions/calendarByDistrict?district_id=394&date=" + D, success: function (result) {
+                    console.log(result)
+                    $("#div1").html("");
+                    $.each(result.centers, function (index, value) {
+
+                        var html = "<div class='col-sm-3'><div class='card' style='width: 18rem;'><p>name:" + value.name + "</p>";
+                        html += "<p>address:" + value.address + "</p>";
+                        html += "<p>state_name:" + value.state_name + "</p>";
+                        html += "<p>district_name:" + value.district_name + "</p>";
+                        html += "<p>block_name:" + value.block_name + "</p>";
+                        html += "<p>pincode:" + value.pincode + "</p>";
+                        html += "<p>fee_type:" + value.fee_type + "</p>";
+                        html += "<p>sessions:" + JSON.stringify(value.sessions) + "</p>";
+                        available_capacity = 0;
+                        $.each(value.sessions, function (index1, value1) {
+                            available_capacity += value1.available_capacity
+
+
+                        });
+                        html += "<p>available_capacity:" + available_capacity + "</p>";
+                        html += "</div></div>";
+                        if (available_capacity > 0)
+                            $("#div1").append(html);
+
+                    });
+                }
+            });
+        }, 30000);                     
+</script>
+</html>

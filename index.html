@@ -71,7 +71,7 @@
             $.ajax({
                 url: "https://cdn-api.co-vin.in/api/v2/appointment/sessions/calendarByDistrict?district_id=394&date=" + D, success: function (result) {
                     console.log(result)
-                    $("#div1").html("");
+                    $("#div1").html("No Centers Found");
                     $.each(result.centers, function (index, value) {
 
                         var html = "<div class='col-sm-3'><div class='card' style='width: 18rem;'><p>name:" + value.name + "</p>";

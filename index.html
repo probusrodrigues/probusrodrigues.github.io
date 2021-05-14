@@ -1,10 +1,21 @@
 <html>
 <head>
     <title>Online Vaccine Center-Palghar</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+
+
     <script>
+        $(function () {
+            $("#tabs").tabs();
+        });
         var D = formatDate(new Date());
         function formatDate(date) {
             var d = new Date(date),
@@ -22,20 +33,50 @@
     </script>
 </head>
 <body>
-    <div class="container-fluid text-center">
-        <div class="row">
+    <div id="tabs">
+        <ul>
+            <li><a href="#tabs-1">Online Centers</a></li>
+            <li><a href="#tabs-2">All Centers</a></li>
+            
+        </ul>
+        <div id="tabs-1">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1> Covid 19 Vaccincation Centers for Palghar</h1>
+                    <br />
+                    <h5>Showing only Online Centers</h5>
+                </div>
+            </div>
+            <div id="div1" class="row text-center" style="padding:20px;">
 
-            <div class="col-lg-12">
-                <h1> Covid 19 Vaccincation Centers for Palghar</h1>
-                <br />
-                <h5>Showing only Online Centers</h5>
+
             </div>
         </div>
+        <div id="tabs-2">
+            <div>
+                <table id="CenterList" class="table table-bordered table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Center Name</th>
+                            <th>Address</th>
+                            <th>State</th>
+                            <th>District</th>
+                            <th>Block</th>
+                            <th>PinCode</th>
+                            <th>Fee</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      
+                    </tbody>
+                </table>
 
-        <div id="div1" class="row text-center" style="padding:20px;">
-
-
+            </div>
         </div>
+      
+    </div>
+    <div class="container-fluid text-center">
+     
 
     </div>
 </body>
@@ -50,6 +91,9 @@
         $.ajax({
             url: "https://cdn-api.co-vin.in/api/v2/appointment/sessions/calendarByDistrict?district_id=394&date=" + D, success: function (result) {
                 console.log(result)
+
+
+
                 $("#div1").html("");
                 $.each(result.centers, function (index, value) {
 
@@ -64,8 +108,6 @@
                     available_capacity = 0;
                     $.each(value.sessions, function (index1, value1) {
                         available_capacity += value1.available_capacity
-
-
                     });
                     html += "<p>Available Capacity:" + available_capacity + "</p>";
                     html += "</div></div></div>";
@@ -75,6 +117,33 @@
                         $("#div1").html("No Centers Found");
 
                 });
+                if ($.fn.DataTable.isDataTable('#CenterList')) {
+                    $('#CenterList').DataTable().destroy();
+                }
+                $('#CenterList').DataTable({
+                    data: result.centers,
+                    columns: [
+                        { data: 'name' },
+                        { data: 'address' },
+                        { data: 'state_name' },
+                        { data: 'district_name' },
+                        { data: 'block_name' },
+                        { data: 'pincode' },
+                        { data: 'fee_type' },
+                    ]
+                });
+
+                //$('#CenterList').DataTable({
+                //    ajax: "https://cdn-api.co-vin.in/api/v2/appointment/sessions/calendarByDistrict?district_id=394&date=" + D,
+                //    columns: [
+                //        { data: 'name' },
+                //        { data: 'position' },
+                //        { data: 'salary' },
+                //        { data: 'state_date' },
+                //        { data: 'office' },
+                //        { data: 'extn' }
+                //    ]
+                //});
             }
         });
 

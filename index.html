@@ -4,9 +4,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script>
-
         var D = formatDate(new Date());
-
         function formatDate(date) {
             var d = new Date(date),
                 month = '' + (d.getMonth() + 1),
@@ -20,13 +18,7 @@
 
             return [day, month, year].join('-');
         }
-
-
     </script>
-
-    
-    
-
 </head>
 <body>
     <div class="container text-center">
@@ -56,7 +48,7 @@
                 $("#div1").html("");
                 $.each(result.centers, function (index, value) {
 
-                    var html = "<div class='col-sm-4'><div class='card' style='width: 18rem;'> <div class='card-body'><p>Center Name:" + value.name + "</p>";
+                    var html = "<div class='col-4'><div class='card' style='width: 18rem;'> <div class='card-body'><p>Center Name:" + value.name + "</p>";
                     html += "<p>Address:" + value.address + "</p>";
                     html += "<p>State Name:" + value.state_name + "</p>";
                     html += "<p>District Name:" + value.district_name + "</p>";

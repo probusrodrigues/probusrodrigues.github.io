@@ -105,11 +105,18 @@
                     html += "<p>PinCode:" + value.pincode + "</p>";
                     html += "<p>Fee Type:" + value.fee_type + "</p>";
                     //  html += "<p>Sessions:" + JSON.stringify(value.sessions) + "</p>";
+                    //html += "<p>Sessions:" + JSON.stringify(value.sessions) + "</p>";
                     available_capacity = 0;
-                    $.each(value.sessions, function (index1, value1) {
-                        available_capacity += value1.available_capacity
+                    $.each(value.sessions, function (index1, session) {
+                        available_capacity += session.available_capacity
+                        html += "<p>Total Available Capacity:" + session.available_capacity + "</p>";
+                        html += "<p>Available Capacity Dose1:" + session.available_capacity_dose1 + "</p>";
+                        html += "<p>Available Capacity Dose2:" + session.available_capacity_dose2 + "</p>";
+                        html += "<p>Date:" + session.date + "</p>";
+                        html += "<p>Age Limit:" + session.min_age_limit + "</p>";
+                        html += "<p>Vaccine:" + session.vaccine + "</p>";
                     });
-                    html += "<p>Available Capacity:" + available_capacity + "</p>";
+                   // html += "<p>Available Capacity:" + available_capacity + "</p>";
                     html += "</div></div></div>";
                     if (available_capacity > 0)
                         $("#div1").append(html);

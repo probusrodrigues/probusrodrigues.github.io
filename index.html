@@ -44,7 +44,12 @@
                 <div class="col-lg-12">
                     <h1> Covid 19 Vaccincation Centers for Palghar</h1>
                     <br />
-                    <h5>Showing only Online Centers</h5>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="ShowAll">
+                        <label class="form-check-label" for="ShowAll">
+                            Show All Centers
+                        </label>
+                    </div>
                 </div>
             </div>
             <div id="div1" class="row text-center" style="padding:20px;">
@@ -85,7 +90,9 @@
     setInterval(function () {
         ShowCenters();
     }, 30000);
-
+    $('#ShowAll').change(function () {
+        ShowCenters();
+    });
     function ShowCenters() {
 
         $.ajax({
@@ -96,8 +103,24 @@
 
                 $("#div1").html("");
                 $.each(result.centers, function (index, value) {
-
-                    var html = "<div class='col-4'><div class='card' style='width: 18rem;'> <div class='card-body'><p>Center Name:" + value.name + "</p>";
+                    available_capacity = 0;
+                    var sessiondetails = "";
+                    $.each(value.sessions, function (index1, session) {
+                        available_capacity += session.available_capacity
+                        sessiondetails += "<p>Total Available Capacity:" + session.available_capacity + "</p>";
+                        sessiondetails += "<p>Available Capacity Dose1:" + session.available_capacity_dose1 + "</p>";
+                        sessiondetails += "<p>Available Capacity Dose2:" + session.available_capacity_dose2 + "</p>";
+                        sessiondetails += "<p>Date:" + session.date + "</p>";
+                        sessiondetails += "<p>Age Limit:" + session.min_age_limit + "</p>";
+                        sessiondetails += "<p>Vaccine:" + session.vaccine + "</p>";
+                    });
+                    var txtcss = "";
+                    if (available_capacity > 0)
+                        txtcss = "text-white bg-success";
+                    else
+                        txtcss = "text-white bg-danger"
+                    var html = "<div class='col-4'><div class='card " + txtcss+" mb-3' style='width: 18rem;'> <div class='card-header'>" + value.name + "</div>";
+                    html += "<div class='card-body'> <p>Center Name:" + value.name + "</p>";
                     html += "<p>Address:" + value.address + "</p>";
                     html += "<p>State Name:" + value.state_name + "</p>";
                     html += "<p>District Name:" + value.district_name + "</p>";
@@ -106,22 +129,18 @@
                     html += "<p>Fee Type:" + value.fee_type + "</p>";
                     //  html += "<p>Sessions:" + JSON.stringify(value.sessions) + "</p>";
                     //html += "<p>Sessions:" + JSON.stringify(value.sessions) + "</p>";
-                    available_capacity = 0;
-                    $.each(value.sessions, function (index1, session) {
-                        available_capacity += session.available_capacity
-                        html += "<p>Total Available Capacity:" + session.available_capacity + "</p>";
-                        html += "<p>Available Capacity Dose1:" + session.available_capacity_dose1 + "</p>";
-                        html += "<p>Available Capacity Dose2:" + session.available_capacity_dose2 + "</p>";
-                        html += "<p>Date:" + session.date + "</p>";
-                        html += "<p>Age Limit:" + session.min_age_limit + "</p>";
-                        html += "<p>Vaccine:" + session.vaccine + "</p>";
-                    });
+                   
                    // html += "<p>Available Capacity:" + available_capacity + "</p>";
+                    html += sessiondetails;
                     html += "</div></div></div>";
-                    if (available_capacity > 0)
+                    if (available_capacity > 0 || $('#ShowAll').is(':checked'))
                         $("#div1").append(html);
                     else
                         $("#div1").html("No Centers Found");
+                   
+
+
+
 
                 });
                 if ($.fn.DataTable.isDataTable('#CenterList')) {

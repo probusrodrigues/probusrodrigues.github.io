@@ -45,11 +45,23 @@
                 <div class="col-lg-12">
                     <h1> Covid 19 Vaccincation Centers for Palghar</h1>
                     <br />
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="ShowAll">
-                        <label class="form-check-label" for="ShowAll">
-                            Show All Centers
-                        </label>
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="ShowAll">
+                                <label class="form-check-label" for="ShowAll">
+                                    Show All Centers
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" checked value="" id="ShowBlock">
+                                <label class="form-check-label" for="ShowBlock">
+                                    VVMC BLOCK
+                                </label>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -91,7 +103,7 @@
     setInterval(function () {
         ShowCenters();
     }, 30000);
-    $('#ShowAll').change(function () {
+    $('#ShowAll , #ShowBlock').change(function () {
         ShowCenters();
     });
     function ShowCenters() {
@@ -101,9 +113,14 @@
                 console.log(result.centers)
 
 
-
+                var centers = result.centers;
                 $("#div1").html("");
-                $.each(result.centers, function (index, value) {
+                
+                if ($('#ShowBlock').is(':checked')) {
+                    centers= centers.filter(x => x.block_name == "VVCMC");
+
+                }
+                $.each(centers, function (index, value) {
                     available_capacity = 0;
                     var sessiondetails = "";
                     $.each(value.sessions, function (index1, session) {

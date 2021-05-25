@@ -137,7 +137,7 @@
                         txtcss = "text-white bg-success";
                     else
                         txtcss = "text-white bg-danger"
-                    var html = "<div class='col-4'><div class='card " + txtcss+" mb-3' style='width: 18rem;'> <div class='card-header'>" + value.name + "</div>";
+                    var html = "<div class='col-4'><div class='card " + txtcss+" mb-3' style='min-width: 5rem;'> <div class='card-header'>" + value.name + "</div>";
                     html += "<div class='card-body'> <p>Center Name:" + value.name + "</p>";
                     html += "<button class='btn btn-link' style='color:white' type='button' data-toggle='collapse' data-target='#collapse" + value.center_id + "' aria-expanded='false' aria-controls='collapse" + value.center_id + "'>View Address</button >";
                     html += "<div id='collapse" + value.center_id + "' class='collapse collapsed' aria-labelledby='headingOne' data-parent='#accordionExample'> " + value.address + "  </div>";

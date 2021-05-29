@@ -54,11 +54,11 @@
                                 </label>
                             </div>
                         </div>
-                        <div class="col-sm-2">
+                        <div class="col-sm-3">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" checked value="" id="ShowBlock">
                                 <label class="form-check-label" for="ShowBlock">
-                                    VVMC BLOCK
+                                    Show Vasai Virar Centers 
                                 </label>
                             </div>
                         </div>
@@ -117,7 +117,7 @@
                 $("#div1").html("");
                 
                 if ($('#ShowBlock').is(':checked')) {
-                    centers= centers.filter(x => x.block_name == "VVCMC");
+                    centers = centers.filter(x => x.block_name == "VVCMC" || x.block_name=="Vasai");
 
                 }
                 $.each(centers, function (index, value) {

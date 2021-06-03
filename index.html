@@ -56,9 +56,17 @@
                         </div>
                         <div class="col-sm-3">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" checked value="" id="ShowBlock">
+                                <input class="form-check-input" type="checkbox"  value="" id="ShowBlock">
                                 <label class="form-check-label" for="ShowBlock">
-                                    Show Vasai Virar Centers 
+                                    Show Vasai Virar Centers
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox"  value="" id="Show18">
+                                <label class="form-check-label" for="Show18">
+                                    Show 18+
                                 </label>
                             </div>
                         </div>
@@ -99,100 +107,171 @@
     </div>
 </body>
 <script>
+    $(".linkMap").click(function () {
+        var address = $(this).data("address");
+        console.log(addresss)
+        var url = "https://www.google.com/maps/search/?api=1&query=" + encodeURI(address)
+        window.open(url, 'name');
+    });
+    $(document).ready(function () {
+        $('#ShowAll').prop("checked",localStorage.getItem("ShowAll")=="true");
+        $('#ShowBlock').prop("checked",localStorage.getItem("ShowBlock")=="true");
+    });
     ShowCenters();
     setInterval(function () {
         ShowCenters();
     }, 30000);
-    $('#ShowAll , #ShowBlock').change(function () {
-        ShowCenters();
+    function BindTable(centers) {
+
+        $.each(centers, function (index, value) {
+            available_capacity = 0;
+            var sessiondetails = "";
+            $.each(value.sessions, function (index1, session) {
+                available_capacity += session.available_capacity
+                sessiondetails += "<p>Total Available Capacity:" + session.available_capacity + "</p>";
+                sessiondetails += "<p>Available Capacity Dose1:" + session.available_capacity_dose1 + "</p>";
+                sessiondetails += "<p>Available Capacity Dose2:" + session.available_capacity_dose2 + "</p>";
+                sessiondetails += "<p>Date:" + session.date + "</p>";
+                sessiondetails += "<p>Age Limit:" + session.min_age_limit + "</p>";
+                sessiondetails += "<p>Vaccine:" + session.vaccine + "</p>";
+            });
+            var txtcss = "";
+            if (available_capacity > 0)
+                txtcss = "text-white bg-success";
+            else
+                txtcss = "text-white bg-danger"
+            var html = "<div class='col-sm-4'><div class='card " + txtcss + " mb-3' style='min-width: 10rem;'> <div class='card-header'>" + value.name + "</div>";
+            html += "<div class='card-body'> <p>Center Name:" + value.name + "</p>";
+            html += "<button class='btn btn-link' style='color:white' type='button' data-toggle='collapse' data-target='#collapse" + value.center_id + "' aria-expanded='false' aria-controls='collapse" + value.center_id + "'>View Address</button >";
+            html += "<div id='collapse" + value.center_id + "' class='collapse collapsed' aria-labelledby='headingOne' data-parent='#accordionExample'> " + value.address + "  <a class='linkMap' href='#' data-address='" + value.address + "'>   Open in map</a>  </div>";
+            //html += "<p>Address:" + value.address + "</p>";
+            html += "<p>State Name:" + value.state_name + "</p>";
+            html += "<p>District Name:" + value.district_name + "</p>";
+            html += "<p>Block Name:" + value.block_name + "</p>";
+            html += "<p>PinCode:" + value.pincode + "</p>";
+            html += "<p>Fee Type:" + value.fee_type + "</p>";
+            //  html += "<p>Sessions:" + JSON.stringify(value.sessions) + "</p>";
+            //html += "<p>Sessions:" + JSON.stringify(value.sessions) + "</p>";
+
+            // html += "<p>Available Capacity:" + available_capacity + "</p>";
+            html += sessiondetails;
+            html += "</div></div></div>";
+            if (available_capacity > 0 || $('#ShowAll').is(':checked'))
+                $("#div1").append(html);
+            //else
+            //  $("#div1").html("No Centers Found");
+        });
+        if ($.fn.DataTable.isDataTable('#CenterList')) {
+            $('#CenterList').DataTable().destroy();
+        }
+        $('#CenterList').DataTable({
+            data: centers,
+            columns: [
+                { data: 'name' },
+                { data: 'address' },
+                { data: 'state_name' },
+                { data: 'district_name' },
+                { data: 'block_name' },
+                { data: 'pincode' },
+                { data: 'fee_type' },
+            ]
+        });
+    }
+    $('#ShowAll , #ShowBlock , #Show18').change(function () {
+        localStorage.setItem("ShowAll", $('#ShowAll').is(':checked'));
+        localStorage.setItem("ShowBlock", $('#ShowBlock').is(':checked'));
+        $("#div1").html('');
+        var filtercenter = centers;
+        if ($('#ShowBlock').is(':checked')) {
+            // centers = centers.filter(x => x.block_name == "VVCMC" || x.block_name=="Vasai");
+            filtercenter = filtercenter.filter(function (obj) {
+               
+                return obj.block_name == "VVCMC" || obj.block_name == "Vasai";
+            });
+        }
+        if ($('#Show18').is(':checked')) {
+            console.log("f");
+            filtercenter = filtercenter.filter(function (obj) {
+                var s = obj.sessions.filter(function (session) {
+                    return session.min_age_limit == 18;
+                });
+                console.log(s);
+                return obj.sessions.filter(function (session) {
+                    return session.min_age_limit == 18;
+                }).length > 0;
+            });
+
+        }
+        if (!$('#ShowAll').is(':checked')) {
+          
+            filtercenter = filtercenter.filter( function (obj) {
+                return obj.sessions.filter(function (session) {
+                    return session.available_capacity > 0;
+                }).length>0;
+            });
+
+        }
+        BindTable(filtercenter);
     });
+    var centers = [];
     function ShowCenters() {
 
         $.ajax({
-            url: "https://cdn-api.co-vin.in/api/v2/appointment/sessions/calendarByDistrict?district_id=394&date=" + D, success: function (result) {
+            url: "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id=394&date=" + D,
+            headers: {
+                Accept: "application/json, text/plain, */*",
+              //  "accept-encoding": "gzip, deflate, br"
+            },
+            success: function (result) {
                 console.log(result.centers)
 
 
-                var centers = result.centers;
+                centers = result.centers;
                 $("#div1").html("");
                 
                 if ($('#ShowBlock').is(':checked')) {
-                    centers = centers.filter(x => x.block_name == "VVCMC" || x.block_name=="Vasai");
-
-                }
-                $.each(centers, function (index, value) {
-                    available_capacity = 0;
-                    var sessiondetails = "";
-                    $.each(value.sessions, function (index1, session) {
-                        available_capacity += session.available_capacity
-                        sessiondetails += "<p>Total Available Capacity:" + session.available_capacity + "</p>";
-                        sessiondetails += "<p>Available Capacity Dose1:" + session.available_capacity_dose1 + "</p>";
-                        sessiondetails += "<p>Available Capacity Dose2:" + session.available_capacity_dose2 + "</p>";
-                        sessiondetails += "<p>Date:" + session.date + "</p>";
-                        sessiondetails += "<p>Age Limit:" + session.min_age_limit + "</p>";
-                        sessiondetails += "<p>Vaccine:" + session.vaccine + "</p>";
+                   // centers = centers.filter(x => x.block_name == "VVCMC" || x.block_name=="Vasai");
+                    centers = centers.filter(function (obj) {
+                        console.log(obj.block_name)
+                        return obj.block_name == "VVCMC" || obj.block_name == "Vasai";
                     });
-                    var txtcss = "";
-                    if (available_capacity > 0)
-                        txtcss = "text-white bg-success";
-                    else
-                        txtcss = "text-white bg-danger"
-                    var html = "<div class='col-sm-4'><div class='card " + txtcss+" mb-3' style='min-width: 10rem;'> <div class='card-header'>" + value.name + "</div>";
-                    html += "<div class='card-body'> <p>Center Name:" + value.name + "</p>";
-                    html += "<button class='btn btn-link' style='color:white' type='button' data-toggle='collapse' data-target='#collapse" + value.center_id + "' aria-expanded='false' aria-controls='collapse" + value.center_id + "'>View Address</button >";
-                    html += "<div id='collapse" + value.center_id + "' class='collapse collapsed' aria-labelledby='headingOne' data-parent='#accordionExample'> " + value.address + "  </div>";
-                   //html += "<p>Address:" + value.address + "</p>";
-                    html += "<p>State Name:" + value.state_name + "</p>";
-                    html += "<p>District Name:" + value.district_name + "</p>";
-                    html += "<p>Block Name:" + value.block_name + "</p>";
-                    html += "<p>PinCode:" + value.pincode + "</p>";
-                    html += "<p>Fee Type:" + value.fee_type + "</p>";
-                    //  html += "<p>Sessions:" + JSON.stringify(value.sessions) + "</p>";
-                    //html += "<p>Sessions:" + JSON.stringify(value.sessions) + "</p>";
-                   
-                   // html += "<p>Available Capacity:" + available_capacity + "</p>";
-                    html += sessiondetails;
-                    html += "</div></div></div>";
-                    if (available_capacity > 0 || $('#ShowAll').is(':checked'))
-                        $("#div1").append(html);
-                    //else
-                      //  $("#div1").html("No Centers Found");
-                   
-
-
-
-
-                });
-                if ($.fn.DataTable.isDataTable('#CenterList')) {
-                    $('#CenterList').DataTable().destroy();
                 }
-                $('#CenterList').DataTable({
-                    data: result.centers,
-                    columns: [
-                        { data: 'name' },
-                        { data: 'address' },
-                        { data: 'state_name' },
-                        { data: 'district_name' },
-                        { data: 'block_name' },
-                        { data: 'pincode' },
-                        { data: 'fee_type' },
-                    ]
-                });
+                if ($('#Show18').is(':checked')) {
+                    //centers = centers.filter(x => x.sessions.filter(function (obj) {
+                    //    console.log(obj.min_age_limit)
+                    //    return (obj.min_age_limit == 18);
+                    //}));
+                    centers = centers.filter(x => function (obj) {
 
-                //$('#CenterList').DataTable({
-                //    ajax: "https://cdn-api.co-vin.in/api/v2/appointment/sessions/calendarByDistrict?district_id=394&date=" + D,
-                //    columns: [
-                //        { data: 'name' },
-                //        { data: 'position' },
-                //        { data: 'salary' },
-                //        { data: 'state_date' },
-                //        { data: 'office' },
-                //        { data: 'extn' }
-                //    ]
-                //});
+                        return obj.sessions.filter(function (session) {
+                            return session.min_age_limit ==18;
+                        });
+                    });
+
+                }
+                if (!$('#ShowAll').is(':checked')) {
+                    //centers = centers.filter(x => x.sessions.filter(function (obj) {
+                    //    console.log(obj.available_capacitys)
+                    //    return (obj.available_capacity >0);
+                    //}));
+                    centers = centers.filter(x => function (obj) {
+                        
+                        return obj.sessions.filter(function (session) {
+                            return session.available_capacity > 0;
+                        });
+                    });
+
+                }
+                BindTable(centers);
+
+               
             }
         });
 
+       
+
     }
+
+    
 </script>
 </html>

@@ -50,35 +50,30 @@
             <div class="col-sm-12">
                 <h1> Covid 19 Vaccincation Centers for Palghar</h1>
                 <br />
-                <div class="row center">
-                    <div class="col-sm-1">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-sm-3">
+                        <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                            <input type="checkbox" class="btn-check" id="ShowAll" autocomplete="off">
+                            <label class="btn btn-sm btn-outline-primary" for="ShowAll">Show All</label>
 
-                        <input type="checkbox" class="btn-check" id="ShowAll" autocomplete="off">
-                        <label class="btn btn-sm btn-outline-primary" for="ShowAll">Show All</label>
+                            <input type="checkbox" class="btn-check" id="ShowBlock" autocomplete="off">
+                            <label class="btn btn-sm btn-outline-primary" for="ShowBlock">VVMC</label>
 
-                    </div>
-                    <div class="col-sm-1">
-                        <input type="checkbox" class="btn-check" id="ShowBlock" autocomplete="off">
-                        <label class="btn btn-sm btn-outline-primary" for="ShowBlock">VVMC</label>
+                            <input type="checkbox" class="btn-check" id="Show18" autocomplete="off">
+                            <label class="btn btn-sm btn-outline-primary" for="Show18">18+</label>
 
-                    </div>
-                    <div class="col-sm-1">
-                        <input type="checkbox" class="btn-check" id="Show18" autocomplete="off">
-                        <label class="btn btn-sm btn-outline-primary" for="Show18">18+</label>
+                            <input type="checkbox" class="btn-check" id="Showd1" autocomplete="off">
+                            <label class="btn btn-sm btn-outline-primary" for="Showd1"> Dose 1</label>
 
-                    </div>
-                    <div class="col-sm-1">
-
-                        <input type="checkbox" class="btn-check" id="Showd1" autocomplete="off">
-                        <label class="btn btn-sm btn-outline-primary" for="Showd1"> Dose 1</label>
-
+                            <input type="checkbox" class="btn-check" id="Showd2" autocomplete="off">
+                            <label class="btn btn-sm btn-outline-primary" for="Showd2"> Dose 2</label>
+                        </div>
+                      
 
                     </div>
-                    <div class="col-sm-1">
-                        <input type="checkbox" class="btn-check" id="Showd2" autocomplete="off">
-                        <label class="btn btn-sm btn-outline-primary" for="Showd2"> Dose 2</label>
-
-                    </div>
+                    
+                   
+                    
                 </div>
             </div>
         </div>
@@ -93,7 +88,7 @@
             </ul>
             <div id="tabs-1">
 
-                <div id="div1" class="row text-center" style="padding:20px;">
+                <div id="div1" class="row d-flex justify-content-center" style="padding:20px;">
 
 
                 </div>
@@ -199,7 +194,7 @@
                 txtcss = "text-white bg-success";
             else
                 txtcss = "text-white bg-danger"
-            var html = "<div class='col-sm-4'><div class='card " + txtcss + " mb-3' style='min-width: 10rem;'> <div class='card-header'>" + value.name + "</div>";
+            var html = "<div class='col-sm-3'><div class='card " + txtcss + " mb-3' style='min-width: 8rem;'> <div class='card-header'>" + value.name + "</div>";
             html += "<div class='card-body'> <p>Center Name:" + value.name + "</p>";
             html += "<button class='btn btn-link' style='color:white' type='button' data-toggle='collapse' data-target='#collapse" + value.center_id + "' aria-expanded='false' aria-controls='collapse" + value.center_id + "'>View Address</button >";
             html += "<div id='collapse" + value.center_id + "' class='collapse collapsed' aria-labelledby='headingOne' data-parent='#accordionExample'> " + value.address + "  <a class='linkMap' href='#' data-address='" + value.address + "'>   Open in map</a>  </div>";

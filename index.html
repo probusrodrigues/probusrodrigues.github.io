@@ -6,8 +6,12 @@
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>-->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
 
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
@@ -34,76 +38,81 @@
     </script>
 </head>
 <body>
-    <div id="tabs">
-        <ul>
-            <li><a href="#tabs-1">Online Centers</a></li>
-            <li><a href="#tabs-2">All Centers</a></li>
-            
-        </ul>
-        <div id="tabs-1">
-            <div class="row">
-                <div class="col-sm-12">
-                    <h1> Covid 19 Vaccincation Centers for Palghar</h1>
-                    <br />
-                    <div class="row">
-                        <div class="col-sm-2">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="ShowAll">
-                                <label class="form-check-label" for="ShowAll">
-                                    Show All Centers
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox"  value="" id="ShowBlock">
-                                <label class="form-check-label" for="ShowBlock">
-                                    Show Vasai Virar Centers
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox"  value="" id="Show18">
-                                <label class="form-check-label" for="Show18">
-                                    Show 18+
-                                </label>
-                            </div>
-                        </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1> Covid 19 Vaccincation Centers for Palghar</h1>
+                <br />
+                <div class="row center">
+                    <div class="col-sm-1">
+
+                        <input type="checkbox" class="btn-check" id="ShowAll" autocomplete="off">
+                        <label class="btn btn-sm btn-outline-primary" for="ShowAll">Show All</label>
+
+                    </div>
+                    <div class="col-sm-1">
+                        <input type="checkbox" class="btn-check" id="ShowBlock" autocomplete="off">
+                        <label class="btn btn-sm btn-outline-primary" for="ShowBlock">VVMC</label>
+
+                    </div>
+                    <div class="col-sm-1">
+                        <input type="checkbox" class="btn-check" id="Show18" autocomplete="off">
+                        <label class="btn btn-sm btn-outline-primary" for="Show18">18+</label>
+
+                    </div>
+                    <div class="col-sm-1">
+
+                        <input type="checkbox" class="btn-check" id="Showd1" autocomplete="off">
+                        <label class="btn btn-sm btn-outline-primary" for="Showd1"> Dose 1</label>
+
+
+                    </div>
+                    <div class="col-sm-1">
+                        <input type="checkbox" class="btn-check" id="Showd2" autocomplete="off">
+                        <label class="btn btn-sm btn-outline-primary" for="Showd2"> Dose 2</label>
+
                     </div>
                 </div>
             </div>
-            <div id="div1" class="row text-center" style="padding:20px;">
-
-
-            </div>
         </div>
-        <div id="tabs-2">
-            <div>
-                <table id="CenterList" class="table table-bordered table-striped" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>Center Name</th>
-                            <th>Address</th>
-                            <th>State</th>
-                            <th>District</th>
-                            <th>Block</th>
-                            <th>PinCode</th>
-                            <th>Fee</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                      
-                    </tbody>
-                </table>
-
-            </div>
+        <div class="row">
+            <br />
         </div>
-      
-    </div>
-    <div class="container-fluid text-center">
-     
+        <div id="tabs">
+            <ul>
+                <li><a href="#tabs-1">Online Centers</a></li>
+                <li><a href="#tabs-2">All Centers</a></li>
 
+            </ul>
+            <div id="tabs-1">
+
+                <div id="div1" class="row text-center" style="padding:20px;">
+
+
+                </div>
+            </div>
+            <div id="tabs-2">
+                <div>
+                    <table id="CenterList" class="table table-bordered table-striped" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Center Name</th>
+                                <th>Address</th>
+                                <th>State</th>
+                                <th>District</th>
+                                <th>Block</th>
+                                <th>PinCode</th>
+                                <th>Fee</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
     </div>
 </body>
 <script>
@@ -114,16 +123,59 @@
         window.open(url, 'name');
     });
     $(document).ready(function () {
-        $('#ShowAll').prop("checked",localStorage.getItem("ShowAll")=="true");
-        $('#ShowBlock').prop("checked",localStorage.getItem("ShowBlock")=="true");
+        $('#ShowAll').prop("checked", localStorage.getItem("ShowAll") == "true");
+        $('#ShowBlock').prop("checked", localStorage.getItem("ShowBlock") == "true");
+        $('#Show18').prop("checked", localStorage.getItem("Show18") == "true");
+        $('#Showd1').prop("checked", localStorage.getItem("Showd1") == "true");
+        $('#Showd2').prop("checked", localStorage.getItem("Showd2") == "true");
     });
     ShowCenters();
     setInterval(function () {
         ShowCenters();
     }, 30000);
-    function BindTable(centers) {
+    function BindTable(filtercenter) {
+        $("#div1").html("");
+        if ($('#ShowBlock').is(':checked')) {
+            // centers = centers.filter(x => x.block_name == "VVCMC" || x.block_name=="Vasai");
+            filtercenter = filtercenter.filter(function (obj) {
 
-        $.each(centers, function (index, value) {
+                return obj.block_name == "VVCMC" || obj.block_name == "Vasai";
+            });
+        }
+        if ($('#Show18').is(':checked')) {
+            console.log("f");
+            filtercenter = filtercenter.filter(function (obj) {
+                return obj.sessions.filter(function (session) {
+                    return session.min_age_limit == 18;
+                }).length > 0;
+            });
+
+        }
+        if (!$('#ShowAll').is(':checked')) {
+
+            filtercenter = filtercenter.filter(function (obj) {
+                return obj.sessions.filter(function (session) {
+                    return session.available_capacity > 0;
+                }).length > 0;
+            });
+        }
+        if ($('#Showd1').is(':checked')) {
+            filtercenter = filtercenter.filter(function (obj) {
+                return obj.sessions.filter(function (session) {
+                    return session.available_capacity_dose1 > 0;
+                }).length > 0;
+            });
+        }
+        if ($('#Showd2').is(':checked')) {
+            filtercenter = filtercenter.filter(function (obj) {
+                return obj.sessions.filter(function (session) {
+                    return session.available_capacity_dose2 > 0;
+                }).length > 0;
+            });
+        }
+
+
+        $.each(filtercenter, function (index, value) {
             available_capacity = 0;
             var sessiondetails = "";
             $.each(value.sessions, function (index1, session) {
@@ -156,8 +208,8 @@
             // html += "<p>Available Capacity:" + available_capacity + "</p>";
             html += sessiondetails;
             html += "</div></div></div>";
-            if (available_capacity > 0 || $('#ShowAll').is(':checked'))
-                $("#div1").append(html);
+            //  if (available_capacity > 0 || $('#ShowAll').is(':checked'))
+            $("#div1").append(html);
             //else
             //  $("#div1").html("No Centers Found");
         });
@@ -165,7 +217,7 @@
             $('#CenterList').DataTable().destroy();
         }
         $('#CenterList').DataTable({
-            data: centers,
+            data: filtercenter,
             columns: [
                 { data: 'name' },
                 { data: 'address' },
@@ -177,40 +229,15 @@
             ]
         });
     }
-    $('#ShowAll , #ShowBlock , #Show18').change(function () {
+    $('#ShowAll , #ShowBlock , #Show18 , #Showd1 , #Showd2').change(function () {
         localStorage.setItem("ShowAll", $('#ShowAll').is(':checked'));
         localStorage.setItem("ShowBlock", $('#ShowBlock').is(':checked'));
+        localStorage.setItem("Show18", $('#Show18').is(':checked'));
+        localStorage.setItem("Showd1", $('#Showd1').is(':checked'));
+        localStorage.setItem("Showd2", $('#Showd2').is(':checked'));
         $("#div1").html('');
         var filtercenter = centers;
-        if ($('#ShowBlock').is(':checked')) {
-            // centers = centers.filter(x => x.block_name == "VVCMC" || x.block_name=="Vasai");
-            filtercenter = filtercenter.filter(function (obj) {
-               
-                return obj.block_name == "VVCMC" || obj.block_name == "Vasai";
-            });
-        }
-        if ($('#Show18').is(':checked')) {
-            console.log("f");
-            filtercenter = filtercenter.filter(function (obj) {
-                var s = obj.sessions.filter(function (session) {
-                    return session.min_age_limit == 18;
-                });
-                console.log(s);
-                return obj.sessions.filter(function (session) {
-                    return session.min_age_limit == 18;
-                }).length > 0;
-            });
 
-        }
-        if (!$('#ShowAll').is(':checked')) {
-          
-            filtercenter = filtercenter.filter( function (obj) {
-                return obj.sessions.filter(function (session) {
-                    return session.available_capacity > 0;
-                }).length>0;
-            });
-
-        }
         BindTable(filtercenter);
     });
     var centers = [];
@@ -220,58 +247,16 @@
             url: "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id=394&date=" + D,
             headers: {
                 Accept: "application/json, text/plain, */*",
-              //  "accept-encoding": "gzip, deflate, br"
+                //  "accept-encoding": "gzip, deflate, br"
             },
             success: function (result) {
                 console.log(result.centers)
-
-
                 centers = result.centers;
-                $("#div1").html("");
-                
-                if ($('#ShowBlock').is(':checked')) {
-                   // centers = centers.filter(x => x.block_name == "VVCMC" || x.block_name=="Vasai");
-                    centers = centers.filter(function (obj) {
-                        console.log(obj.block_name)
-                        return obj.block_name == "VVCMC" || obj.block_name == "Vasai";
-                    });
-                }
-                if ($('#Show18').is(':checked')) {
-                    //centers = centers.filter(x => x.sessions.filter(function (obj) {
-                    //    console.log(obj.min_age_limit)
-                    //    return (obj.min_age_limit == 18);
-                    //}));
-                    centers = centers.filter(x => function (obj) {
-
-                        return obj.sessions.filter(function (session) {
-                            return session.min_age_limit ==18;
-                        });
-                    });
-
-                }
-                if (!$('#ShowAll').is(':checked')) {
-                    //centers = centers.filter(x => x.sessions.filter(function (obj) {
-                    //    console.log(obj.available_capacitys)
-                    //    return (obj.available_capacity >0);
-                    //}));
-                    centers = centers.filter(x => function (obj) {
-                        
-                        return obj.sessions.filter(function (session) {
-                            return session.available_capacity > 0;
-                        });
-                    });
-
-                }
                 BindTable(centers);
-
-               
             }
         });
-
-       
-
     }
 
-    
+
 </script>
 </html>

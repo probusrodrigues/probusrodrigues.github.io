@@ -133,9 +133,9 @@
         $('#Showd2').prop("checked", localStorage.getItem("Showd2") == "true");
     });
     ShowCenters();
-    //setInterval(function () {
-    //    ShowCenters();
-    //}, 30000);
+    setInterval(function () {
+        ShowCenters();
+    }, 60000);
     function BindTable(filtercenter) {
         $("#div1").html("");
         if ($('#ShowBlock').is(':checked')) {

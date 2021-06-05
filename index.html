@@ -192,10 +192,12 @@
             var sessiondetails = "";
             $.each(value.sessions, function (index1, session) {
                 available_capacity += session.available_capacity
-                sessiondetails += "<p>Total  Capacity:" + session.available_capacity + "</br>";
-                sessiondetails += "Dose1 :" + session.available_capacity_dose1 + "</br>";
-                sessiondetails += "Dose2 :" + session.available_capacity_dose2 + "</br>";
-                sessiondetails += "Date :" + session.date + "</br>";
+                sessiondetails += "<p>";
+                sessiondetails += "<div class='row'><div class='col-4'>Dose1: " + session.available_capacity_dose1 + "</div><div class='col-4'>Dose2:" + session.available_capacity_dose2 + "</div><div class='col-4'>Total:" + session.available_capacity + "</div></div>";
+                //sessiondetails += "Dose1:" + session.available_capacity_dose1 + "</br>";
+                //sessiondetails += "Dose2:" + session.available_capacity_dose2 + "</br>";
+                //sessiondetails += "Total:" + session.available_capacity + "</br>";
+                sessiondetails += "Date:" + session.date + "</br>";
                 sessiondetails += "Age:" + session.min_age_limit + "</br>";
                 sessiondetails += "Vaccine:" + session.vaccine + "<hr></p>";
             });

@@ -133,9 +133,9 @@
         $('#Showd2').prop("checked", localStorage.getItem("Showd2") == "true");
     });
     ShowCenters();
-    setInterval(function () {
-        ShowCenters();
-    }, 30000);
+    //setInterval(function () {
+    //    ShowCenters();
+    //}, 30000);
     function BindTable(filtercenter) {
         $("#div1").html("");
         if ($('#ShowBlock').is(':checked')) {
@@ -183,31 +183,36 @@
             var sessiondetails = "";
             $.each(value.sessions, function (index1, session) {
                 available_capacity += session.available_capacity
-                sessiondetails += "<p>Total Available Capacity:" + session.available_capacity + "</p>";
-                sessiondetails += "<p>Available Capacity Dose1:" + session.available_capacity_dose1 + "</p>";
-                sessiondetails += "<p>Available Capacity Dose2:" + session.available_capacity_dose2 + "</p>";
-                sessiondetails += "<p>Date:" + session.date + "</p>";
-                sessiondetails += "<p>Age Limit:" + session.min_age_limit + "</p>";
-                sessiondetails += "<p>Vaccine:" + session.vaccine + "</p>";
+                sessiondetails += "<p>Total  Capacity:" + session.available_capacity + "</br>";
+                sessiondetails += "Dose1 :" + session.available_capacity_dose1 + "</br>";
+                sessiondetails += "Dose2 :" + session.available_capacity_dose2 + "</br>";
+                sessiondetails += "Date :" + session.date + "</br>";
+                sessiondetails += "Age:" + session.min_age_limit + "</br>";
+                sessiondetails += "Vaccine:" + session.vaccine + "<hr></p>";
             });
             var txtcss = "";
             if (available_capacity > 0)
                 txtcss = "text-white bg-success";
             else
                 txtcss = "text-white bg-danger"
-            var html = "<div class='col-sm-3'><div class='card " + txtcss + " mb-3' style='min-width: 8rem;'> <div class='card-header'>" + value.name + "</div>";
-            html += "<div class='card-body'> <p>Center Name:" + value.name + "</p>";
-            html += "<p><a class='btn btn-link' data-bs-toggle='collapse' href='#collapse" + value.center_id + "' role='button' aria-expanded='false' aria-controls='collapse" + value.center_id + "'>Address</a></p>"
-            html += "<div class='collapse' id='collapse" + value.center_id + "'><div class=''>" + value.address + "</div></div>"
+            var html = "<div class='col-sm-3'><div class='card " + txtcss + " mb-3' style='min-width: 8rem;'> <div class='card-header '><div class='row'><div class='col-8'>" + value.name + "</div><div class='col-4 text-end'>" + value.fee_type +"</div></div></div>";
+            html += "<div class='card-body'>";
+            html += "<h5 class='card-title'>" + value.name + "</h5>"
+            html += "<p>";
+            html += value.address+" , ";
+           // html += "<a class='btn btn-link' data-bs-toggle='collapse' href='#collapse" + value.center_id + "' role='button' aria-expanded='false' aria-controls='collapse" + value.center_id + "'>Address</a>";
+           // html += "<div class='collapse' id='collapse" + value.center_id + "'><div class=''>" + value.address + "</div></div>";
 
            // html += "<button class='btn btn-link' style='color:white' type='button' data-toggle='collapse'  data-bs-target='#collapse" + value.center_id + "' data-target='#collapse" + value.center_id + "' aria-expanded='false' aria-controls='collapse" + value.center_id + "'>View Address</button >";
            // html += "<div id='collapse" + value.center_id + "' class='collapse collapsed' aria-labelledby='headingOne' data-parent='#accordionExample'> " + value.address + "  <a class='linkMap' href='#' data-address='" + value.address + "'>   Open in map</a>  </div>";
             //html += "<p>Address:" + value.address + "</p>";
-            html += "<p>State Name:" + value.state_name + "</p>";
-            html += "<p>District Name:" + value.district_name + "</p>";
-            html += "<p>Block Name:" + value.block_name + "</p>";
-            html += "<p>PinCode:" + value.pincode + "</p>";
-            html += "<p>Fee Type:" + value.fee_type + "</p>";
+           
+            html += value.state_name + " , " ;
+            html += value.district_name + " , " ;
+            html += value.block_name + " , ";
+            html += value.pincode + "</br>";
+           // html += "Fee Type:" + value.fee_type + "</br>";
+            html += "<hr></p>";
             //  html += "<p>Sessions:" + JSON.stringify(value.sessions) + "</p>";
             //html += "<p>Sessions:" + JSON.stringify(value.sessions) + "</p>";
 

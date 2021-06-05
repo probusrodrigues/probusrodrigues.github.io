@@ -211,23 +211,11 @@
             html += "<h5 class='card-title'>" + value.name + "</h5>"
             html += "<p>";
             html += value.address+" , ";
-           // html += "<a class='btn btn-link' data-bs-toggle='collapse' href='#collapse" + value.center_id + "' role='button' aria-expanded='false' aria-controls='collapse" + value.center_id + "'>Address</a>";
-           // html += "<div class='collapse' id='collapse" + value.center_id + "'><div class=''>" + value.address + "</div></div>";
-
-           // html += "<button class='btn btn-link' style='color:white' type='button' data-toggle='collapse'  data-bs-target='#collapse" + value.center_id + "' data-target='#collapse" + value.center_id + "' aria-expanded='false' aria-controls='collapse" + value.center_id + "'>View Address</button >";
-           // html += "<div id='collapse" + value.center_id + "' class='collapse collapsed' aria-labelledby='headingOne' data-parent='#accordionExample'> " + value.address + "  <a class='linkMap' href='#' data-address='" + value.address + "'>   Open in map</a>  </div>";
-            //html += "<p>Address:" + value.address + "</p>";
-           
             html += value.state_name + " , " ;
             html += value.district_name + " , " ;
             html += value.block_name + " , ";
             html += value.pincode + "</br>";
-           // html += "Fee Type:" + value.fee_type + "</br>";
             html += "<hr></p>";
-            //  html += "<p>Sessions:" + JSON.stringify(value.sessions) + "</p>";
-            //html += "<p>Sessions:" + JSON.stringify(value.sessions) + "</p>";
-
-            // html += "<p>Available Capacity:" + available_capacity + "</p>";
             html += sessiondetails;
             html += "</div></div></div>";
             //  if (available_capacity > 0 || $('#ShowAll').is(':checked'))

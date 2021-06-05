@@ -51,7 +51,7 @@
                 <h1> Covid 19 Vaccincation Centers for Palghar</h1>
                 <br />
                 <div class="row d-flex justify-content-center">
-                    <div class="col-sm-3">
+                    <div class="col-sm-6">
                         <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
                             <input type="checkbox" class="btn-check" id="ShowAll" autocomplete="off">
                             <label class="btn btn-sm btn-outline-primary" for="ShowAll">Show All</label>
@@ -67,6 +67,9 @@
 
                             <input type="checkbox" class="btn-check" id="Showd2" autocomplete="off">
                             <label class="btn btn-sm btn-outline-primary" for="Showd2"> Dose 2</label>
+
+                            <input type="checkbox" class="btn-check" id="ShowdPaid" autocomplete="off">
+                            <label class="btn btn-sm btn-outline-primary" for="ShowdPaid"> Paid</label>
                         </div>
 
 
@@ -131,6 +134,8 @@
         $('#Show18').prop("checked", localStorage.getItem("Show18") == "true");
         $('#Showd1').prop("checked", localStorage.getItem("Showd1") == "true");
         $('#Showd2').prop("checked", localStorage.getItem("Showd2") == "true");
+        $('#ShowdPaid').prop("checked", localStorage.getItem("ShowdPaid") == "true");
+        
     });
     ShowCenters();
     setInterval(function () {
@@ -145,6 +150,10 @@
                 return obj.block_name == "VVCMC" || obj.block_name == "Vasai";
             });
         }
+
+        if ($('#ShowdPaid').is(':checked')) {
+            filtercenter = filtercenter.filter(x => x.fee_type != "Free");
+        } 
         if ($('#Show18').is(':checked')) {
             console.log("f");
             filtercenter = filtercenter.filter(function (obj) {
@@ -241,15 +250,15 @@
             ]
         });
     }
-    $('#ShowAll , #ShowBlock , #Show18 , #Showd1 , #Showd2').change(function () {
+    $('#ShowAll , #ShowBlock , #Show18 , #Showd1 , #Showd2 ,#ShowdPaid').change(function () {
         localStorage.setItem("ShowAll", $('#ShowAll').is(':checked'));
         localStorage.setItem("ShowBlock", $('#ShowBlock').is(':checked'));
         localStorage.setItem("Show18", $('#Show18').is(':checked'));
         localStorage.setItem("Showd1", $('#Showd1').is(':checked'));
         localStorage.setItem("Showd2", $('#Showd2').is(':checked'));
-        $("#div1").html('');
+        localStorage.setItem("ShowdPaid", $('#ShowdPaid').is(':checked'));
+               
         var filtercenter = centers;
-
         BindTable(filtercenter);
     });
     var centers = [];

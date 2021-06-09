@@ -192,33 +192,41 @@
             var sessiondetails = "";
             $.each(value.sessions, function (index1, session) {
                 available_capacity += session.available_capacity
-               // sessiondetails += "<div class='small'>";
-               
-                
+                // sessiondetails += "<div class='small'>";
+
+
                 //sessiondetails += "Date:" + session.date + "</br>";
                 //sessiondetails += "Age:" + session.min_age_limit + "</br>";
-               // sessiondetails += "Vaccine:" + session.vaccine + "</div>";
+                // sessiondetails += "Vaccine:" + session.vaccine + "</div>";
                 sessiondetails += "<div class='row small'>";
                 sessiondetails += "<div class='col-5'>" + session.date + "</div>";
-                sessiondetails += "<div class='col-5'>" + session.vaccine + "</div>";
-                sessiondetails += "<div class='col-2'><span class='badge bg-dark'>" + session.min_age_limit + "</span></div>";
+                sessiondetails += "<div class='col-5'><span class='badge bg-info text-dark'>" + session.vaccine + "</span></div>";
+                sessiondetails += "<div class='col-2'><span class='badge bg-dark'>" + session.min_age_limit + "+</span></div>";
                 sessiondetails += "</div>"
                 sessiondetails += "<div class='row small'>";
                 sessiondetails += "<div class='col-4'>Dose1: " + session.available_capacity_dose1 + "</div>";
                 sessiondetails += "<div class='col-4'>Dose2:" + session.available_capacity_dose2 + "</div>"
                 sessiondetails += "<div class='col-4'>Total:" + session.available_capacity + "</div>";
                 sessiondetails += "</div>"
-               // sessiondetails += "</div>"
+                // sessiondetails += "</div>"
                 sessiondetails += "<hr>"
             });
             var txtcss = "";
-            if (available_capacity > 0)
+            var colcss = "";
+            if (available_capacity > 0) {
                 txtcss = "text-white bg-success";
-            else
+                colcss = "sc";
+
+            }
+            else {
                 txtcss = "text-white bg-danger"
-            var html = "<div class='col-sm-3'>"
+                colcss = "fc";
+            }
+
+            var html = "";
+            html += "<div class='col-sm-3 " + colcss+"'>"
             html += "<div class='card " + txtcss + " mb-3' style='min-width: 8rem;'> "
-            html +="<div class='card-header '><div class='row'><div class='col-8'>" + value.name + "</div><div class='col-4 text-end'>" + value.fee_type + "</div></div></div>";
+            html += "<div class='card-header '><div class='row'><div class='col-8'>" + value.name + "</div><div class='col-4 text-end'><span class='badge bg-primary'>" + value.fee_type + "</span></div></div></div>";
             html += "<div class='card-body'>";
            // html += "<h5 class='card-title'>" + value.name + "</h5>"
             html += "<p class='small'>";
@@ -231,10 +239,11 @@
             html += sessiondetails;
             html += "</div>";
             html += "</div>";
-            html+="</div>";
+           // html+="</div>";
 
 
             $("#div1").append(html);
+            $('.sc').prependTo('#div1');
             console.log(html);
 
         });

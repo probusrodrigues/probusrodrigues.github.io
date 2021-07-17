@@ -25,9 +25,7 @@
 
 
     <script>
-        $(function () {
-            $("#tabs").tabs();
-        });
+      
         var D = formatDate(new Date());
         function formatDate(date) {
             var d = new Date(date),
@@ -43,15 +41,21 @@
             return [day, month, year].join('-');
         }
     </script>
+    <style type="text/css">
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+        }
+    </style>
 </head>
 <body>
     <div class="container-fluid">
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-sm-12">
                 <h1> Covid 19 Vaccincation Centers for Palghar</h1>
                 <br />
                 <div class="row d-flex justify-content-center">
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
                             <input type="checkbox" class="btn-check" id="ShowAll" autocomplete="off">
                             <label class="btn btn-sm btn-outline-primary" for="ShowAll">Show All</label>
@@ -83,41 +87,38 @@
         <div class="row">
             <br />
         </div>
-        <div id="tabs">
-            <ul>
-                <li><a href="#tabs-1">Online Centers</a></li>
-                <li><a href="#tabs-2">All Centers</a></li>
-
-            </ul>
-            <div id="tabs-1">
-
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Card Format</button>
+                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">List Format</button>
+            </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                 <div id="div1" class="row d-flex justify-content-center" style="padding:20px;">
-
-
                 </div>
             </div>
-            <div id="tabs-2">
-                <div>
-                    <table id="CenterList" class="table table-bordered table-striped nowrap" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>Center Name</th>
-                                <th>Address</th>
-                                <th>State</th>
-                                <th>District</th>
-                                <th>Block</th>
-                                <th>PinCode</th>
-                                <th>Fee</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-
-                </div>
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                <table id="CenterList" class="table table-bordered table-striped nowrap" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Center Name</th>
+                            <th>Address</th>
+                            <th>State</th>
+                            <th>District</th>
+                            <th>Block</th>
+                            <th>PinCode</th>
+                            <th>Fee</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
             </div>
-
         </div>
+
+       
+
     </div>
    
 </body>
@@ -140,7 +141,7 @@
     ShowCenters();
     setInterval(function () {
         ShowCenters();
-    }, 60000);
+    }, 120000);
     function BindTable(filtercenter) {
         $("#div1").html("");
         if ($('#ShowBlock').is(':checked')) {

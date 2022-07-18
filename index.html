@@ -140,7 +140,7 @@ background-image:linear-gradient(to right,#6666ff 15%, #4d4dff 40%, #751aff);
                 var EmployeeName = $('#txtEmployeeName').val();
                 var StartDate = $('#txtStartDate').val();
                 var EndDate = $('#txtEndDate').val();
-                var RouteNA = $('#txtbackRouteNA').val();
+                var RouteType = $('#txtRouteType').val();
                 var PickUpDrop = $('#txtPickUpDrop').val();
                 var HeaderColor = $('#simple-color-picker').val();
                 localStorage.setItem("Source", Source);
@@ -151,7 +151,7 @@ background-image:linear-gradient(to right,#6666ff 15%, #4d4dff 40%, #751aff);
                 localStorage.setItem("EmployeeName", EmployeeName);
                 localStorage.setItem("StartDate", StartDate);
                 localStorage.setItem("EndDate", EndDate);
-                localStorage.setItem("RouteNA", RouteNA);
+                localStorage.setItem("RouteType", RouteType);
                 localStorage.setItem("PickUpDrop", PickUpDrop);
                 localStorage.setItem("HeaderColor", HeaderColor);
                 location.reload();
@@ -197,7 +197,7 @@ background-image:linear-gradient(to right,#6666ff 15%, #4d4dff 40%, #751aff);
             var EmployeeName = localStorage.getItem("EmployeeName");
             var StartDate = localStorage.getItem("StartDate");
             var EndDate = localStorage.getItem("EndDate");
-            var RouteNA = localStorage.getItem("RouteNA");
+            var RouteType = localStorage.getItem("RouteType");
             var PickUpDrop = localStorage.getItem("PickUpDrop");
            var HeaderColor=  localStorage.getItem("HeaderColor");
 
@@ -209,7 +209,7 @@ background-image:linear-gradient(to right,#6666ff 15%, #4d4dff 40%, #751aff);
             $('#EmployeeName').html(EmployeeName);
             $('#StartDate').html(StartDate);
             $('#EndDate').html(EndDate);
-            $('#RouteNA').html(RouteNA);
+            $('#RouteType').html(RouteType);
             $('#PickUpDrop').html(PickUpDrop);
             // Retrieve
             $('#txtSource').val(Source);
@@ -220,11 +220,11 @@ background-image:linear-gradient(to right,#6666ff 15%, #4d4dff 40%, #751aff);
             $('#txtEmployeeName').val(EmployeeName);
             $('#txtStartDate').val(StartDate);
             $('#txtEndDate').val(EndDate);
-            $('#txtbackRouteNA').val(RouteNA);
+            $('#txtRouteType').val(RouteType);
             $('#txtPickUpDrop').val(PickUpDrop);
             $('#simple-color-picker').val(HeaderColor);
 
-            $('#Source').html(Source);
+            $('.Source').html(Source);
             $('#Destination').html(Destination);
             $('#FromTime').html(FromTime);
             $('#ToTime').html(ToTime);
@@ -232,7 +232,7 @@ background-image:linear-gradient(to right,#6666ff 15%, #4d4dff 40%, #751aff);
             $('#EmployeeName').html(EmployeeName);
             $('#StartDate').html(StartDate);
             $('#EndDate').html(EndDate);
-            $('#RouteNA').html(RouteNA);
+            $('#RouteNA').html(RouteType);
             $('#PickUpDrop').html(PickUpDrop);
              $('#HeadContainer').css('background-color',HeaderColor);
             
@@ -296,12 +296,10 @@ background-image:linear-gradient(to right,#6666ff 15%, #4d4dff 40%, #751aff);
         <div class="container divPass">
             <div class="text-center" id="HeadContainer" style="background-color:saddlebrown;border-radius:8px;color:white;padding:5px;font-weight:bold;font-size:18px">
                 <br />
-                <p><span id="Source"></span> to <span id="Destination"></span> and Back Route No <span id="RouteNA"></span></p>
+                <p><span class="Source"></span> </p>
                 <p><span style="font-size:x-large; height:15px;width:20px" class="glyphicon glyphicon-reverse-arrow"></span></p>
-                <p>TCS Olympus</p>
-
-
-                <p><span id="FromTime"></span>  &nbsp;   &nbsp;&nbsp;&nbsp;   &nbsp;&nbsp; &nbsp;   &nbsp;&nbsp;   &nbsp; &nbsp;   &nbsp;&nbsp;   &nbsp;      <span id="ToTime"></span></p>
+                <p><span id="Destination"></span></p>
+                <p>Pick Up - <span id="FromTime"></span>  &nbsp;   &nbsp;&nbsp;&nbsp;   &nbsp;&nbsp; &nbsp;   &nbsp;&nbsp;   &nbsp; &nbsp;   &nbsp;&nbsp;   &nbsp;    Drop -  <span id="ToTime"></span></p>
 
             </div>
 
@@ -317,8 +315,23 @@ background-image:linear-gradient(to right,#6666ff 15%, #4d4dff 40%, #751aff);
 
                         </tr>
                         <tr>
-                            <td style="text-align:left"><span id="EmployeeName"></span></td>
-                            <td style="text-align:right"><span id="EmployeeID"></span></td>
+                            <td style="text-align:left"><b><span id="EmployeeName"></span></b></td>
+                            <td style="text-align:right"><b><span id="EmployeeID"></span></b></td>
+
+                        </tr>
+                        <tr>
+                            <td style="text-align:left">&nbsp;</td>
+                            <td style="text-align:right">&nbsp;</td>
+
+                        </tr>
+                        <tr>
+                            <td style="text-align:left">Bus Stop Name</td>
+                            <td style="text-align:right">Route Type</td>
+
+                        </tr>
+                        <tr>
+                            <td style="text-align:left"><b><span class="Source"></span></b></td>
+                            <td style="text-align:right"><b><span id="RouteType"></span></b></td>
 
                         </tr>
                         <tr>
@@ -332,17 +345,27 @@ background-image:linear-gradient(to right,#6666ff 15%, #4d4dff 40%, #751aff);
 
                         </tr>
                         <tr>
-                            <td style="text-align:left"><span id="StartDate"></span></td>
-                            <td style="text-align:right"><span id="EndDate"></span></td>
+                            <td style="text-align:left"><b><span id="StartDate"></span></b></td>
+                            <td style="text-align:right"><b><span id="EndDate"></span></b></td>
+
+                        </tr>
+                        <tr>
+                            <td style="text-align:left">&nbsp;</td>
+                            <td style="text-align:right">&nbsp;</td>
+
+                        </tr>
+                        <tr>
+                            <td style="text-align:left">Route</td>
+                            <td ><b id="PickUpDrop"> </b></td>
 
                         </tr>
                     </table>
 
                     <br />
                     <div class="text-center">
-                        <p>Pick and Drop</p>
+                        <!-- <p>Pick and Drop</p> -->
                         <h2 class="display-4">
-                            <small id="PickUpDrop"> </small>
+                            
                         </h2>
                     </div>
                 </div>
@@ -391,7 +414,7 @@ background-image:linear-gradient(to right,#6666ff 15%, #4d4dff 40%, #751aff);
 
                 <div class="row">
                     <div class="col-lg-6">
-                        Back Rount no <input type="text" id="txtbackRouteNA" class="form-control">
+                        Route Type <input type="text" id="txtRouteType" class="form-control">
                     </div>
                     <div class="col-lg-6">
                         Pick Up Drop  <input type="text" id="txtPickUpDrop" class="form-control">
@@ -438,7 +461,7 @@ background-image:linear-gradient(to right,#6666ff 15%, #4d4dff 40%, #751aff);
         <br /><br /><br />
         <footer class="footer">
             <div class="footer" style="align:center;width:100%;padding-bottom:10px">
-                <img style="width:100%" with="100%" height="50px" src="https://upload.wikimedia.org/wikipedia/en/b/b1/Tata_Consultancy_Services_Logo.svg" alt="Alternate Text" />
+                <img   height="50px" src="https://tcs.com/content/dam/tcs/images/Newtcslogo/tcs-logo-tata-blue-1x-dec2021.png" alt="Alternate Text" />
 
             </div>
         </footer>

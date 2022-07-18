@@ -1,303 +1,449 @@
+﻿<!doctype html>
 <html>
 <head>
-    <title>Online Vaccine Center-Palghar</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>-->
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
-
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
-
-    <script src="https://cdn.datatables.net/fixedheader/3.1.9/js/dataTables.fixedHeader.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.2.8/js/dataTables.responsive.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.2.8/js/responsive.bootstrap.min.js"></script>
-
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedheader/3.1.9/css/fixedHeader.bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.8/css/responsive.bootstrap.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#541C97" />
+   <meta name="msapplication-navbutton-color" content="#541C97"> <!-- iOS Safari -->
+ <meta name="apple-mobile-web-app-status-bar-style" content="#541C97">
 
 
-    <script>
-      
-        var D = formatDate(new Date());
-        function formatDate(date) {
-            var d = new Date(date),
-                month = '' + (d.getMonth() + 1),
-                day = '' + d.getDate(),
-                year = d.getFullYear();
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.5.3/css/bootstrap-colorpicker.css">
 
-            if (month.length < 2)
-                month = '0' + month;
-            if (day.length < 2)
-                day = '0' + day;
+    
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.5.3/js/bootstrap-colorpicker.min.js"></script>
+    <style>
 
-            return [day, month, year].join('-');
+        .glyphicon-reverse-arrow:before {
+            content: "\21CC";
         }
-    </script>
-    <style type="text/css">
-        .card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+
+        #imgarrow {
+            -webkit-filter: invert(1);
+            filter: invert(1);
         }
+
+        .navbar-inverse .navbar-toggle {
+            background-color: #541C97;
+        }
+
+            .navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
+                background-color: #541C97;
+            }
+
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            color: white;
+            text-align: center;
+        }
+
+        .navbar-toggle {
+            border: 0px solid transparent;
+        }
+.body{
+font-size:16px
+
+}
+
+#HeadContainer{
+background-image:linear-gradient(to right,#6666ff 15%, #4d4dff 40%, #751aff);
+}
     </style>
+    <script>
+
+        (function (win) {
+
+            var doc = win.document;
+
+
+            // If there's a hash, or addEventListener is undefined, stop here
+
+            if (!win.navigator.standalone && !location.hash && win.addEventListener) {
+
+
+                //scroll to 1
+
+                win.scrollTo(0, 1);
+
+                var scrollTop = 1,
+
+                    getScrollTop = function () {
+
+                        return win.pageYOffset || doc.compatMode === "CSS1Compat" && doc.documentElement.scrollTop || doc.body.scrollTop || 0;
+
+                    },
+
+
+                    //reset to 0 on bodyready, if needed
+
+                    bodycheck = setInterval(function () {
+
+                        if (doc.body) {
+
+                            clearInterval(bodycheck);
+
+                            scrollTop = getScrollTop();
+
+                            win.scrollTo(0, scrollTop === 1 ? 0 : 1);
+
+                        }
+
+                    }, 15);
+
+
+                win.addEventListener("load", function () {
+
+                    setTimeout(function () {
+
+                        //at load, if user hasn't scrolled more than 20 or so...
+
+                        if (getScrollTop() < 20) {
+
+                            //reset to hide addr bar at onload
+
+                            win.scrollTo(0, scrollTop === 1 ? 0 : 1);
+
+                        }
+
+                    }, 0);
+
+                }, false);
+
+            }
+
+        })(this);
+
+
+        $(function () {
+
+            $('#simple-color-picker').colorpicker();
+
+        });
+        $(document).ready(function () {
+
+
+            function SaveData() {
+                var Source = $('#txtSource').val();
+                var Destination = $('#txtDestination').val();
+                var FromTime = $('#txtFromTime').val();
+                var ToTime = $('#txtToTime').val();
+                var EmployeeID = $('#txtEmployeeID').val();
+                var EmployeeName = $('#txtEmployeeName').val();
+                var StartDate = $('#txtStartDate').val();
+                var EndDate = $('#txtEndDate').val();
+                var RouteNA = $('#txtbackRouteNA').val();
+                var PickUpDrop = $('#txtPickUpDrop').val();
+                var HeaderColor = $('#simple-color-picker').val();
+                localStorage.setItem("Source", Source);
+                localStorage.setItem("Destination", Destination);
+                localStorage.setItem("FromTime", FromTime);
+                localStorage.setItem("ToTime", ToTime);
+                localStorage.setItem("EmployeeID", EmployeeID);
+                localStorage.setItem("EmployeeName", EmployeeName);
+                localStorage.setItem("StartDate", StartDate);
+                localStorage.setItem("EndDate", EndDate);
+                localStorage.setItem("RouteNA", RouteNA);
+                localStorage.setItem("PickUpDrop", PickUpDrop);
+                localStorage.setItem("HeaderColor", HeaderColor);
+                location.reload();
+
+            }
+            //$('#btnSave').on('touchstart', function () {
+            //    SaveData();
+            //});
+
+            $(document).on("click", "#btnSave", function () {
+                SaveData();
+            });
+            //$('#btnSave').on('click touchstart', function () {
+            //    SaveData();
+            //    //var Source = $('#txtSource').val();
+            //    //var Destination = $('#txtDestination').val();
+            //    //var FromTime = $('#txtFromTime').val();
+            //    //var ToTime = $('#txtToTime').val();
+            //    //var EmployeeID = $('#txtEmployeeID').val();
+            //    //var EmployeeName = $('#txtEmployeeName').val();
+            //    //var StartDate = $('#txtStartDate').val();
+            //    //var EndDate = $('#txtEndDate').val();
+            //    //var RouteNA = $('#txtbackRouteNA').val();
+            //    //var PickUpDrop = $('#txtPickUpDrop').val();
+            //    //localStorage.setItem("Source", Source);
+            //    //localStorage.setItem("Destination", Destination);
+            //    //localStorage.setItem("FromTime", FromTime);
+            //    //localStorage.setItem("ToTime", ToTime);
+            //    //localStorage.setItem("EmployeeID", EmployeeID);
+            //    //localStorage.setItem("EmployeeName", EmployeeName);
+            //    //localStorage.setItem("StartDate", StartDate);
+            //    //localStorage.setItem("EndDate", EndDate);
+            //    //localStorage.setItem("RouteNA", RouteNA);
+            //    //localStorage.setItem("PickUpDrop", PickUpDrop);
+            //    //location.reload();
+
+            //});
+            var Source = localStorage.getItem("Source");
+            var Destination = localStorage.getItem("Destination");
+            var FromTime = localStorage.getItem("FromTime");
+            var ToTime = localStorage.getItem("ToTime");
+            var EmployeeID = localStorage.getItem("EmployeeID");
+            var EmployeeName = localStorage.getItem("EmployeeName");
+            var StartDate = localStorage.getItem("StartDate");
+            var EndDate = localStorage.getItem("EndDate");
+            var RouteNA = localStorage.getItem("RouteNA");
+            var PickUpDrop = localStorage.getItem("PickUpDrop");
+           var HeaderColor=  localStorage.getItem("HeaderColor");
+
+            $('#Source').html(Source);
+            $('#Destination').html(Destination);
+            $('#FromTime').html(FromTime);
+            $('#ToTime').html(ToTime);
+            $('#EmployeeID').html(EmployeeID);
+            $('#EmployeeName').html(EmployeeName);
+            $('#StartDate').html(StartDate);
+            $('#EndDate').html(EndDate);
+            $('#RouteNA').html(RouteNA);
+            $('#PickUpDrop').html(PickUpDrop);
+            // Retrieve
+            $('#txtSource').val(Source);
+            $('#txtDestination').val(Destination);
+            $('#txtFromTime').val(FromTime);
+            $('#txtToTime').val(ToTime);
+            $('#txtEmployeeID').val(EmployeeID);
+            $('#txtEmployeeName').val(EmployeeName);
+            $('#txtStartDate').val(StartDate);
+            $('#txtEndDate').val(EndDate);
+            $('#txtbackRouteNA').val(RouteNA);
+            $('#txtPickUpDrop').val(PickUpDrop);
+            $('#simple-color-picker').val(HeaderColor);
+
+            $('#Source').html(Source);
+            $('#Destination').html(Destination);
+            $('#FromTime').html(FromTime);
+            $('#ToTime').html(ToTime);
+            $('#EmployeeID').html(EmployeeID);
+            $('#EmployeeName').html(EmployeeName);
+            $('#StartDate').html(StartDate);
+            $('#EndDate').html(EndDate);
+            $('#RouteNA').html(RouteNA);
+            $('#PickUpDrop').html(PickUpDrop);
+             $('#HeadContainer').css('background-color',HeaderColor);
+            
+   $('#simple-color-picker').colorpicker();
+        });
+
+        //function ShoWAdminPage() {
+        //    $('#AdminPage').show();
+        //    $('.divPass').hide();
+
+
+        //}
+        //function ShoWPass() {
+        //    location.reload();
+        //    $('#AdminPage').hide();
+        //    $('.divPass').show();
+
+
+        //}
+        $(document).on("click", "#btnShowPass", function () {
+            location.reload();
+        });
+        $(document).on("click", "#btnShowAdmin", function () {
+            $('#AdminPage').show();
+            $('.divPass').hide();
+        });
+
+    </script>
 </head>
-<body>
-    <div class="container-fluid">
-        <div class="row justify-content-center">
-            <div class="col-sm-12">
-                <h1> Covid 19 Vaccincation Centers for Palghar</h1>
+<body style="font-size:20px">
+    <form>
+
+
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid "  style="background:rgb(84,28,151); color:white">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" style="float:left" data-toggle="collapse" data-target="#myNavbar">
+
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        
+                    </button>
+                    <a class="navbar-brand" style="color:white" href="javascript:void(0);">Digital Bus Pass</a>
+                </div>
+                <div class="collapse navbar-collapse navbar-right" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li class=""><a href="javascript:void(0);" id="btnShowPass">Home</a></li>
+                        <li><a href="javascript:void(0);" id="btnShowAdmin">Admin</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+<div class="container divPass text-center ">
+
+&#9432 Your bus pass is visible basis  <br /> requisition in GESS
+</div>
+
+        <br />
+        <div class="container divPass">
+            <div class="text-center" id="HeadContainer" style="background-color:saddlebrown;border-radius:8px;color:white;padding:5px;font-weight:bold;font-size:18px">
                 <br />
-                <div class="row d-flex justify-content-center">
-                    <div class="col-sm-4">
-                        <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                            <input type="checkbox" class="btn-check" id="ShowAll" autocomplete="off">
-                            <label class="btn btn-sm btn-outline-primary" for="ShowAll">Show All</label>
-
-                            <input type="checkbox" class="btn-check" id="ShowBlock" autocomplete="off">
-                            <label class="btn btn-sm btn-outline-primary" for="ShowBlock">VVMC</label>
-
-                            <input type="checkbox" class="btn-check" id="Show18" autocomplete="off">
-                            <label class="btn btn-sm btn-outline-primary" for="Show18">18+</label>
-
-                            <input type="checkbox" class="btn-check" id="Showd1" autocomplete="off">
-                            <label class="btn btn-sm btn-outline-primary" for="Showd1"> Dose 1</label>
-
-                            <input type="checkbox" class="btn-check" id="Showd2" autocomplete="off">
-                            <label class="btn btn-sm btn-outline-primary" for="Showd2"> Dose 2</label>
-
-                            <input type="checkbox" class="btn-check" id="ShowdPaid" autocomplete="off">
-                            <label class="btn btn-sm btn-outline-primary" for="ShowdPaid"> Paid</label>
-                        </div>
+                <p><span id="Source"></span> to <span id="Destination"></span> and Back Route No <span id="RouteNA"></span></p>
+                <p><span style="font-size:x-large; height:15px;width:20px" class="glyphicon glyphicon-reverse-arrow"></span></p>
+                <p>TCS Olympus</p>
 
 
+                <p><span id="FromTime"></span>  &nbsp;   &nbsp;&nbsp;&nbsp;   &nbsp;&nbsp; &nbsp;   &nbsp;&nbsp;   &nbsp; &nbsp;   &nbsp;&nbsp;   &nbsp;      <span id="ToTime"></span></p>
+
+            </div>
+
+        </div>
+        <br />
+        <div class="container divPass">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <table style="width:100%">
+                        <tr>
+                            <td style="text-align:left">Name</td>
+                            <td style="text-align:right">Employee ID</td>
+
+                        </tr>
+                        <tr>
+                            <td style="text-align:left"><span id="EmployeeName"></span></td>
+                            <td style="text-align:right"><span id="EmployeeID"></span></td>
+
+                        </tr>
+                        <tr>
+                            <td style="text-align:left">&nbsp;</td>
+                            <td style="text-align:right">&nbsp;</td>
+
+                        </tr>
+                        <tr>
+                            <td style="text-align:left">Start Date</td>
+                            <td style="text-align:right">End Date</td>
+
+                        </tr>
+                        <tr>
+                            <td style="text-align:left"><span id="StartDate"></span></td>
+                            <td style="text-align:right"><span id="EndDate"></span></td>
+
+                        </tr>
+                    </table>
+
+                    <br />
+                    <div class="text-center">
+                        <p>Pick and Drop</p>
+                        <h2 class="display-4">
+                            <small id="PickUpDrop"> </small>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+
+
+        <div class="container" id="AdminPage" style="display:none">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-6">
+                        Source <input type="text" id="txtSource" class="form-control">
+                    </div>
+                    <div class="col-lg-6">
+                        Destination <input type="text" id="txtDestination" class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        Time From <input type="text" id="txtFromTime" class="form-control">
+                    </div>
+                    <div class="col-lg-6">
+                        Time TO <input type="text" id="txtToTime" class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        EmpoyeeID <input type="text" id="txtEmployeeID" class="form-control">
+                    </div>
+                    <div class="col-lg-6">
+                        Name <input type="text" id="txtEmployeeName" class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        Start Date <input type="text" id="txtStartDate" class="form-control">
+                    </div>
+                    <div class="col-lg-6">
+                        End Date <input type="text" id="txtEndDate" class="form-control">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        Back Rount no <input type="text" id="txtbackRouteNA" class="form-control">
+                    </div>
+                    <div class="col-lg-6">
+                        Pick Up Drop  <input type="text" id="txtPickUpDrop" class="form-control">
                     </div>
 
 
 
+
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                       Header Color
+                        <input id="simple-color-picker" type="text" class="form-control" value="" />
+                    </div>
+                    <div class="col-lg-6"></div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <br />
+                        <button type="button" id="btnSave" onclick="SaveData();" class="btn btn-primary">Save</button>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <br />
-        </div>
-        <nav>
-            <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Card Format</button>
-                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">List Format</button>
+
+        <div class="container">
+            <div class="row">
+                <br />
             </div>
-        </nav>
-        <div class="tab-content" id="nav-tabContent">
-            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                <div id="div1" class="row d-flex justify-content-center" style="padding:20px;">
-                </div>
+            <div class="row">
+                <br />
             </div>
-            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                <table id="CenterList" class="table table-bordered table-striped nowrap" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>Center Name</th>
-                            <th>Address</th>
-                            <th>State</th>
-                            <th>District</th>
-                            <th>Block</th>
-                            <th>PinCode</th>
-                            <th>Fee</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
+            <div class="row">
+                <br />
+            </div>
+            <div class="row">
+                <br />
             </div>
         </div>
 
-       
 
-    </div>
-   
+        <br />
+        <br />
+        <br /><br /><br />
+        <footer class="footer">
+            <div class="footer" style="align:center;width:100%;padding-bottom:10px">
+                <img style="width:100%" with="100%" height="50px" src="https://upload.wikimedia.org/wikipedia/en/b/b1/Tata_Consultancy_Services_Logo.svg" alt="Alternate Text" />
+
+            </div>
+        </footer>
+<br /><br /><br />
+    </form>
+
 </body>
-<script>
-    $(".linkMap").click(function () {
-        var address = $(this).data("address");
-        console.log(addresss)
-        var url = "https://www.google.com/maps/search/?api=1&query=" + encodeURI(address)
-        window.open(url, 'name');
-    });
-    $(document).ready(function () {
-        $('#ShowAll').prop("checked", localStorage.getItem("ShowAll") == "true");
-        $('#ShowBlock').prop("checked", localStorage.getItem("ShowBlock") == "true");
-        $('#Show18').prop("checked", localStorage.getItem("Show18") == "true");
-        $('#Showd1').prop("checked", localStorage.getItem("Showd1") == "true");
-        $('#Showd2').prop("checked", localStorage.getItem("Showd2") == "true");
-        $('#ShowdPaid').prop("checked", localStorage.getItem("ShowdPaid") == "true");
-        
-    });
-    ShowCenters();
-    setInterval(function () {
-        ShowCenters();
-    }, 120000);
-    function BindTable(filtercenter) {
-        $("#div1").html("");
-        if ($('#ShowBlock').is(':checked')) {
-            // centers = centers.filter(x => x.block_name == "VVCMC" || x.block_name=="Vasai");
-            filtercenter = filtercenter.filter(function (obj) {
-
-                return obj.block_name == "VVCMC" || obj.block_name == "Vasai";
-            });
-        }
-
-        if ($('#ShowdPaid').is(':checked')) {
-            filtercenter = filtercenter.filter(x => x.fee_type != "Free");
-        } 
-        if ($('#Show18').is(':checked')) {
-            console.log("f");
-            filtercenter = filtercenter.filter(function (obj) {
-                return obj.sessions.filter(function (session) {
-                    return session.min_age_limit == 18;
-                }).length > 0;
-            });
-
-        }
-        if (!$('#ShowAll').is(':checked')) {
-
-            filtercenter = filtercenter.filter(function (obj) {
-                return obj.sessions.filter(function (session) {
-                    return session.available_capacity > 0;
-                }).length > 0;
-            });
-        }
-        if ($('#Showd1').is(':checked')) {
-            filtercenter = filtercenter.filter(function (obj) {
-                return obj.sessions.filter(function (session) {
-                    return session.available_capacity_dose1 > 0;
-                }).length > 0;
-            });
-        }
-        if ($('#Showd2').is(':checked')) {
-            filtercenter = filtercenter.filter(function (obj) {
-                return obj.sessions.filter(function (session) {
-                    return session.available_capacity_dose2 > 0;
-                }).length > 0;
-            });
-        }
-
-
-        $.each(filtercenter, function (index, value) {
-            available_capacity = 0;
-            var sessiondetails = "";
-            $.each(value.sessions, function (index1, session) {
-                available_capacity += session.available_capacity
-                // sessiondetails += "<div class='small'>";
-
-
-                //sessiondetails += "Date:" + session.date + "</br>";
-                //sessiondetails += "Age:" + session.min_age_limit + "</br>";
-                // sessiondetails += "Vaccine:" + session.vaccine + "</div>";
-                sessiondetails += "<div class='row small'>";
-                sessiondetails += "<div class='col-5'>" + session.date + "</div>";
-                sessiondetails += "<div class='col-5'><span class='badge bg-info text-dark'>" + session.vaccine + "</span></div>";
-                sessiondetails += "<div class='col-2'><span class='badge bg-dark'>" + session.min_age_limit + "+</span></div>";
-                sessiondetails += "</div>"
-                sessiondetails += "<div class='row small'>";
-                sessiondetails += "<div class='col-4'>Dose1: " + session.available_capacity_dose1 + "</div>";
-                sessiondetails += "<div class='col-4'>Dose2:" + session.available_capacity_dose2 + "</div>"
-                sessiondetails += "<div class='col-4'>Total:" + session.available_capacity + "</div>";
-                sessiondetails += "</div>"
-                // sessiondetails += "</div>"
-                sessiondetails += "<hr>"
-            });
-            var txtcss = "";
-            var colcss = "";
-            if (available_capacity > 0) {
-                txtcss = "text-white bg-success";
-                colcss = "sc";
-
-            }
-            else {
-                txtcss = "text-white bg-danger"
-                colcss = "fc";
-            }
-            var centerid = value.center_id;
-            var html = "";
-            html += "<div class='col-sm-3 " + colcss+"'>"
-            html += "<div id=" + centerid +" class='card " + txtcss + " mb-3' style='min-width: 8rem;'> "
-            html += "<div class='card-header '><div class='row'><div class='col-8'>" + value.name + "</div><div class='col-4 text-end'><span class='badge bg-primary'>" + value.fee_type + "</span></div></div></div>";
-            html += "<div class='card-body'>";
-           // html += "<h5 class='card-title'>" + value.name + "</h5>"
-            html += "<p class='small'>";
-            html += value.address+" , ";
-            html += value.state_name + " , " ;
-            html += value.district_name + " , " ;
-            html += value.block_name + " , ";
-            html += value.pincode ;
-            html += "</p><hr>";
-            html += sessiondetails;
-            html += "</div>";
-            html += "</div>";
-           // html+="</div>";
-
-
-            setTimeout(function () {
-                $("#div1").append(html);               
-                $('.sc').prependTo('#div1');
-                $("#" + centerid).effect("shake");
-            }, 500 * index );
-
-        });
-        
-         
-
-        if ($.fn.DataTable.isDataTable('#CenterList')) {
-            $('#CenterList').DataTable().destroy();
-        }
-        $('#CenterList').DataTable({
-            data: filtercenter,
-            responsive: true,
-            columns: [
-                { data: 'name' },
-                { data: 'address' },
-                { data: 'state_name' },
-                { data: 'district_name' },
-                { data: 'block_name' },
-                { data: 'pincode' },
-                { data: 'fee_type' },
-            ]
-        });
-    }
-    $('#ShowAll , #ShowBlock , #Show18 , #Showd1 , #Showd2 ,#ShowdPaid').change(function () {
-        localStorage.setItem("ShowAll", $('#ShowAll').is(':checked'));
-        localStorage.setItem("ShowBlock", $('#ShowBlock').is(':checked'));
-        localStorage.setItem("Show18", $('#Show18').is(':checked'));
-        localStorage.setItem("Showd1", $('#Showd1').is(':checked'));
-        localStorage.setItem("Showd2", $('#Showd2').is(':checked'));
-        localStorage.setItem("ShowdPaid", $('#ShowdPaid').is(':checked'));
-               
-        var filtercenter = centers;
-        BindTable(filtercenter);
-    });
-    var centers = [];
-    function ShowCenters() {
-
-        $.ajax({
-            url: "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id=394&date=" + D,
-            headers: {
-                Accept: "application/json, text/plain, */*",
-                //  "accept-encoding": "gzip, deflate, br"
-            },
-            success: function (result) {
-                console.log(result.centers)
-                centers = result.centers;
-                BindTable(centers);
-            }
-        });
-    }
-
-   
-</script>
 </html>

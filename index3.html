@@ -1,0 +1,480 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#541C97" />
+   <meta name="msapplication-navbutton-color" content="#541C97"> <!-- iOS Safari -->
+ <meta name="apple-mobile-web-app-status-bar-style" content="#541C97">
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.5.3/css/bootstrap-colorpicker.css">
+
+    
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.5.3/js/bootstrap-colorpicker.min.js"></script>
+    <style>
+
+        .glyphicon-reverse-arrow:before {
+            content: "\21CC";
+        }
+
+        #imgarrow {
+            -webkit-filter: invert(1);
+            filter: invert(1);
+        }
+
+        .navbar-inverse .navbar-toggle {
+            background-color: #541C97;
+        }
+
+            .navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
+                background-color: #541C97;
+            }
+
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            color: white;
+            text-align: center;
+        }
+
+        .navbar-toggle {
+            border: 0px solid transparent;
+        }
+.body{
+font-size:16px
+
+}
+
+#HeadContainer{
+background-image:linear-gradient(to right,#6666ff 15%, #4d4dff 40%, #751aff);
+}
+    </style>
+    <script>
+
+        (function (win) {
+
+            var doc = win.document;
+
+
+            // If there's a hash, or addEventListener is undefined, stop here
+
+            if (!win.navigator.standalone && !location.hash && win.addEventListener) {
+
+
+                //scroll to 1
+
+                win.scrollTo(0, 1);
+
+                var scrollTop = 1,
+
+                    getScrollTop = function () {
+
+                        return win.pageYOffset || doc.compatMode === "CSS1Compat" && doc.documentElement.scrollTop || doc.body.scrollTop || 0;
+
+                    },
+
+
+                    //reset to 0 on bodyready, if needed
+
+                    bodycheck = setInterval(function () {
+
+                        if (doc.body) {
+
+                            clearInterval(bodycheck);
+
+                            scrollTop = getScrollTop();
+
+                            win.scrollTo(0, scrollTop === 1 ? 0 : 1);
+
+                        }
+
+                    }, 15);
+
+
+                win.addEventListener("load", function () {
+
+                    setTimeout(function () {
+
+                        //at load, if user hasn't scrolled more than 20 or so...
+
+                        if (getScrollTop() < 20) {
+
+                            //reset to hide addr bar at onload
+
+                            win.scrollTo(0, scrollTop === 1 ? 0 : 1);
+
+                        }
+
+                    }, 0);
+
+                }, false);
+
+            }
+
+        })(this);
+
+
+        $(function () {
+
+            $('#simple-color-picker').colorpicker();
+
+        });
+        $(document).ready(function () {
+
+
+            function SaveData() {
+                var Source = $('#txtSource').val();
+                var Destination = $('#txtDestination').val();
+                var FromTime = $('#txtFromTime').val();
+                var ToTime = $('#txtToTime').val();
+                var EmployeeID = $('#txtEmployeeID').val();
+                var EmployeeName = $('#txtEmployeeName').val();
+                var StartDate = $('#txtStartDate').val();
+                var EndDate = $('#txtEndDate').val();
+                var RouteType = $('#txtRouteType').val();
+                var PickUpDrop = $('#txtPickUpDrop').val();
+                var HeaderColor = $('#simple-color-picker').val();
+                localStorage.setItem("Source", Source);
+                localStorage.setItem("Destination", Destination);
+                localStorage.setItem("FromTime", FromTime);
+                localStorage.setItem("ToTime", ToTime);
+                localStorage.setItem("EmployeeID", EmployeeID);
+                localStorage.setItem("EmployeeName", EmployeeName);
+                localStorage.setItem("StartDate", StartDate);
+                localStorage.setItem("EndDate", EndDate);
+                localStorage.setItem("RouteType", RouteType);
+                localStorage.setItem("PickUpDrop", PickUpDrop);
+                localStorage.setItem("HeaderColor", HeaderColor);
+                location.reload();
+
+            }
+            //$('#btnSave').on('touchstart', function () {
+            //    SaveData();
+            //});
+
+            $(document).on("click", "#btnSave", function () {
+                SaveData();
+            });
+            //$('#btnSave').on('click touchstart', function () {
+            //    SaveData();
+            //    //var Source = $('#txtSource').val();
+            //    //var Destination = $('#txtDestination').val();
+            //    //var FromTime = $('#txtFromTime').val();
+            //    //var ToTime = $('#txtToTime').val();
+            //    //var EmployeeID = $('#txtEmployeeID').val();
+            //    //var EmployeeName = $('#txtEmployeeName').val();
+            //    //var StartDate = $('#txtStartDate').val();
+            //    //var EndDate = $('#txtEndDate').val();
+            //    //var RouteNA = $('#txtbackRouteNA').val();
+            //    //var PickUpDrop = $('#txtPickUpDrop').val();
+            //    //localStorage.setItem("Source", Source);
+            //    //localStorage.setItem("Destination", Destination);
+            //    //localStorage.setItem("FromTime", FromTime);
+            //    //localStorage.setItem("ToTime", ToTime);
+            //    //localStorage.setItem("EmployeeID", EmployeeID);
+            //    //localStorage.setItem("EmployeeName", EmployeeName);
+            //    //localStorage.setItem("StartDate", StartDate);
+            //    //localStorage.setItem("EndDate", EndDate);
+            //    //localStorage.setItem("RouteNA", RouteNA);
+            //    //localStorage.setItem("PickUpDrop", PickUpDrop);
+            //    //location.reload();
+
+            //});
+            var Source = localStorage.getItem("Source");
+            var Destination = localStorage.getItem("Destination");
+            var FromTime = localStorage.getItem("FromTime");
+            var ToTime = localStorage.getItem("ToTime");
+            var EmployeeID = localStorage.getItem("EmployeeID");
+            var EmployeeName = localStorage.getItem("EmployeeName");
+            var StartDate = localStorage.getItem("StartDate");
+            var EndDate = localStorage.getItem("EndDate");
+            var RouteType = localStorage.getItem("RouteType");
+            var PickUpDrop = localStorage.getItem("PickUpDrop");
+           var HeaderColor=  localStorage.getItem("HeaderColor");
+
+            $('#Source').html(Source);
+            $('#Destination').html(Destination);
+            $('#FromTime').html(FromTime);
+            $('#ToTime').html(ToTime);
+            $('#EmployeeID').html(EmployeeID);
+            $('#EmployeeName').html(EmployeeName);
+            $('#StartDate').html(StartDate);
+            $('#EndDate').html(EndDate);
+            $('#RouteType').html(RouteType);
+            $('#PickUpDrop').html(PickUpDrop);
+            // Retrieve
+            $('#txtSource').val(Source);
+            $('#txtDestination').val(Destination);
+            $('#txtFromTime').val(FromTime);
+            $('#txtToTime').val(ToTime);
+            $('#txtEmployeeID').val(EmployeeID);
+            $('#txtEmployeeName').val(EmployeeName);
+            $('#txtStartDate').val(StartDate);
+            $('#txtEndDate').val(EndDate);
+            $('#txtRouteType').val(RouteType);
+            $('#txtPickUpDrop').val(PickUpDrop);
+            $('#simple-color-picker').val(HeaderColor);
+
+            $('.Source').html(Source);
+            $('#Destination').html(Destination);
+            $('#FromTime').html(FromTime);
+            $('#ToTime').html(ToTime);
+            $('#EmployeeID').html(EmployeeID);
+            $('#EmployeeName').html(EmployeeName);
+            $('#StartDate').html(StartDate);
+            $('#EndDate').html(EndDate);
+            $('#RouteNA').html(RouteType);
+            $('#PickUpDrop').html(PickUpDrop);
+             $('#HeadContainer').css('background-color',HeaderColor);
+            
+   $('#simple-color-picker').colorpicker();
+        });
+
+        //function ShoWAdminPage() {
+        //    $('#AdminPage').show();
+        //    $('.divPass').hide();
+
+
+        //}
+        //function ShoWPass() {
+        //    location.reload();
+        //    $('#AdminPage').hide();
+        //    $('.divPass').show();
+
+
+        //}
+        $(document).on("click", "#btnShowPass", function () {
+            location.reload();
+        });
+        $(document).on("click", "#btnShowAdmin", function () {
+            $('#AdminPage').show();
+            $('.divPass').hide();
+        });
+
+    </script>
+</head>
+<body style="font-size:20px">
+    <form>
+
+
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid "  style="background:rgb(84,28,151); color:white">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" style="float:left" data-toggle="collapse" data-target="#myNavbar">
+
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        
+                    </button>
+                    <a class="navbar-brand" style="color:white" href="javascript:void(0);">Digital Bus Pass</a>
+                </div>
+                <div class="collapse navbar-collapse navbar-right" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li class=""><a href="javascript:void(0);" id="btnShowPass">Home</a></li>
+                        <li><a href="javascript:void(0);" id="btnShowAdmin">Admin</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+<div class="container divPass text-center ">
+
+&#9432 Your bus pass is visible basis  <br /> requisition in GESS
+</div>
+
+        <br />
+        <div class="container divPass">
+            <div class="text-center" id="HeadContainer" style="background-color:saddlebrown;border-radius:8px;color:white;padding:5px;font-weight:bold;font-size:18px">
+                <br />
+                <p><span class="Source"></span> </p>
+                <p><span style="font-size:x-large; height:15px;width:20px" class="glyphicon glyphicon-reverse-arrow"></span></p>
+                <p><span id="Destination"></span></p>
+                <p>Pick Up - <span id="FromTime"></span>  &nbsp;   &nbsp;&nbsp;&nbsp;   &nbsp;&nbsp; &nbsp;   &nbsp;&nbsp;   &nbsp; &nbsp;   &nbsp;&nbsp;   &nbsp;    Drop -  <span id="ToTime"></span></p>
+
+            </div>
+
+        </div>
+        <br />
+        <div class="container divPass">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <table style="width:100%">
+                        <tr>
+                            <td style="text-align:left">Name</td>
+                            <td style="text-align:right">Employee ID</td>
+
+                        </tr>
+                        <tr>
+                            <td style="text-align:left"><b><span id="EmployeeName"></span></b></td>
+                            <td style="text-align:right"><b><span id="EmployeeID"></span></b></td>
+
+                        </tr>
+                        <tr>
+                            <td style="text-align:left">&nbsp;</td>
+                            <td style="text-align:right">&nbsp;</td>
+
+                        </tr>
+                        <tr>
+                            <td style="text-align:left">Bus Stop Name</td>
+                            <td style="text-align:right">Route Type</td>
+
+                        </tr>
+                        <tr>
+                            <td style="text-align:left"><b><span class="Source"></span></b></td>
+                            <td style="text-align:right"><b><span id="RouteType"></span></b></td>
+
+                        </tr>
+                        <tr>
+                            <td style="text-align:left">&nbsp;</td>
+                            <td style="text-align:right">&nbsp;</td>
+
+                        </tr>
+                        <tr>
+                            <td style="text-align:left">Start Date</td>
+                            <td style="text-align:right">End Date</td>
+
+                        </tr>
+                        <tr>
+                            <td style="text-align:left"><b><span id="StartDate"></span></b></td>
+                            <td style="text-align:right"><b><span id="EndDate"></span></b></td>
+
+                        </tr>
+                        <tr>
+                            <td style="text-align:left">&nbsp;</td>
+                            <td style="text-align:right">&nbsp;</td>
+
+                        </tr>
+                        <tr>
+                            <td style="text-align:left">Route</td>
+                            <td ></td>
+
+                        </tr>
+                    </table>
+
+                    <br />
+                    <div class="row">
+                        <div class="col-2">
+                            Route
+                        </div>
+                        <div class="col-10">
+                            <b id="PickUpDrop"> </b>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <!-- <p>Pick and Drop</p> -->
+                        <h2 class="display-4">
+                            
+                        </h2>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+
+
+        <div class="container" id="AdminPage" style="display:none">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-6">
+                        Source <input type="text" id="txtSource" class="form-control">
+                    </div>
+                    <div class="col-lg-6">
+                        Destination <input type="text" id="txtDestination" class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        Time From <input type="text" id="txtFromTime" class="form-control">
+                    </div>
+                    <div class="col-lg-6">
+                        Time TO <input type="text" id="txtToTime" class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        EmpoyeeID <input type="text" id="txtEmployeeID" class="form-control">
+                    </div>
+                    <div class="col-lg-6">
+                        Name <input type="text" id="txtEmployeeName" class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        Start Date <input type="text" id="txtStartDate" class="form-control">
+                    </div>
+                    <div class="col-lg-6">
+                        End Date <input type="text" id="txtEndDate" class="form-control">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        Route Type <input type="text" id="txtRouteType" class="form-control">
+                    </div>
+                    <div class="col-lg-6">
+                        Pick Up Drop  <input type="text" id="txtPickUpDrop" class="form-control">
+                    </div>
+
+
+
+
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                       Header Color
+                        <input id="simple-color-picker" type="text" class="form-control" value="" />
+                    </div>
+                    <div class="col-lg-6"></div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <br />
+                        <button type="button" id="btnSave" onclick="SaveData();" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <br />
+            </div>
+            <div class="row">
+                <br />
+            </div>
+            <div class="row">
+                <br />
+            </div>
+            <div class="row">
+                <br />
+            </div>
+        </div>
+
+
+        <br />
+        <br />
+        <br /><br /><br />
+        <footer class="footer">
+            <div class="footer" style="align:center;width:100%;padding-bottom:10px">
+                <img   height="50px" src="https://tcs.com/content/dam/tcs/images/Newtcslogo/tcs-logo-tata-blue-1x-dec2021.png" alt="Alternate Text" />
+
+            </div>
+        </footer>
+<br /><br /><br />
+    </form>
+
+</body>
+</html>

@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1705100237609,
+  "timestamp": 1705172603202,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -11,15 +11,14 @@
         "ignoreVary": true
       },
       "urls": [
-        "/523.1118cc74e4eaf7f9.js",
         "/favicon.ico",
         "/index.html",
-        "/main.c16b8387a0a5786d.js",
+        "/main.f2760d275d1b78d4.js",
         "/manifest.webmanifest",
-        "/polyfills.adc25b3771919b0c.js",
-        "/runtime.08da822fe1761373.js",
-        "/scripts.90401e309df1b6a9.js",
-        "/styles.12359cf4c0b44c12.css"
+        "/polyfills.b2e8591dcaafa5bb.js",
+        "/runtime.fcbcd41c092c91fa.js",
+        "/scripts.d1c00555d4694195.js",
+        "/styles.d60a4bef62c641c8.css"
       ],
       "patterns": []
     },
@@ -39,14 +38,14 @@
         "/assets/icons/icon-384x384.png",
         "/assets/icons/icon-512x512.png",
         "/assets/icons/icon-72x72.png",
-        "/assets/images/etms.png"
+        "/assets/images/etms.png",
+        "/assets/images/tcs-logo-tata-blue-1x-dec2021.png"
       ],
       "patterns": []
     }
   ],
   "dataGroups": [],
   "hashTable": {
-    "/523.1118cc74e4eaf7f9.js": "55f7fd78c9314fc2ddb657b445196bda5b3492d3",
     "/assets/icons/icon- 96x96.png": "bfceb3aba9fc25cb56c68b0e8ce878c54c87797e",
     "/assets/icons/icon-128x128.png": "0637b8bee28fb6c839f710ce06e4d9a717b6e35c",
     "/assets/icons/icon-144x144.png": "9a9b39e189e1b7132f265996fa015845c9b75b9e",
@@ -56,14 +55,15 @@
     "/assets/icons/icon-512x512.png": "beafee8323c90c21c7c604ae46ff5448dfa5248c",
     "/assets/icons/icon-72x72.png": "c5a2ce45369360b2cf188546248b325d897316e6",
     "/assets/images/etms.png": "3f8d90d6cb357e125ac7837f4555263440fb685c",
+    "/assets/images/tcs-logo-tata-blue-1x-dec2021.png": "16b79a81abe6b39f1df2d6dc83faf002c4d05d0a",
     "/favicon.ico": "8ecd63bd617e805b6f7dbc03a26a1552fd3453a5",
-    "/index.html": "5549bbc8d14e2536728804c868c690fe90d9ffa0",
-    "/main.c16b8387a0a5786d.js": "f39413b4878e9fe5f746ca95760c693e8063a37e",
+    "/index.html": "19e0da8b80ce2f2531fb97ed8df4692954247ffb",
+    "/main.f2760d275d1b78d4.js": "96abb5f616ee64483a43b06b4ca78e946509aa1a",
     "/manifest.webmanifest": "66e32bbff6f2d7003a2fcbe6f0d35cc9f5b80c18",
-    "/polyfills.adc25b3771919b0c.js": "131d91053d2529cd99b4b226eaed176df6ad25cb",
-    "/runtime.08da822fe1761373.js": "e8cb4bea8808f737dd7c6cdf4281585bac699749",
-    "/scripts.90401e309df1b6a9.js": "742b820505b2d7f814cc7aa1c1ca8549d68c0bdb",
-    "/styles.12359cf4c0b44c12.css": "5b92498ae2a8407e59ebea007c1af22f83f3a5bb"
+    "/polyfills.b2e8591dcaafa5bb.js": "8d2993f5b60f6f5c487853904970c93a5576ee78",
+    "/runtime.fcbcd41c092c91fa.js": "94e3f56d81b13ad31876b841d550fb5aec37e644",
+    "/scripts.d1c00555d4694195.js": "5fb603a3e8a1447499866bc413a183bfebff99bf",
+    "/styles.d60a4bef62c641c8.css": "9a3aa3c521197319e06cff6df22c73e20bbe3fe0"
   },
   "navigationUrls": [
     {
